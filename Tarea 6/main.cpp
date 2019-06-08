@@ -17,7 +17,7 @@ void agregarUsuario(){
 }
 
 int main() {
-
+	agregarUsuario();
 	cout << "Bienvenido. Elija la opcion" << endl; 
 	while(true)
 	{		
@@ -45,9 +45,9 @@ int main() {
 			IControladorUsuario* contUsuario= f->getIControladorUsuario();
 			sesionOK = contUsuario->iniciarSesion(nickname, password);
 			if (sesionOK)			
-				cout << "ok";
+				cout << "ok" << endl;
 			else	
-				cout << "Nook";
+				cout << "Nook"<< endl; 
 				
 		}else if (comando == 2){ //Alta Cine
 			

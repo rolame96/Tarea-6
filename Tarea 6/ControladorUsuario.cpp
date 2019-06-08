@@ -1,9 +1,11 @@
 #include "ControladorUsuario.h"
 
-
 ControladorUsuario* ControladorUsuario::instancia = NULL;
 
-ControladorUsuario::ControladorUsuario(){}
+ControladorUsuario::ControladorUsuario(){
+	this->usuarioLogueado = NULL;
+	listaUsuarios.clear();
+}
 
 ControladorUsuario* ControladorUsuario::getInstancia(){
 	if (instancia == NULL)
@@ -21,11 +23,12 @@ bool ControladorUsuario::iniciarSesion(string nickname, string password){
 		for (std::list<Usuario*>::iterator it=listaUsuarios.begin(); it != listaUsuarios.end(); ++it){
 			Usuario* u = dynamic_cast<Usuario*>(*it);
 			if (u->getNickname() == nickname && u->getPassword() == password){
+				usuarioLogueado = u;
 				return true;
 			}	
 		}
-	}
-	return false;		
+	}	
+	return false;
 }
 
 bool ControladorUsuario::usuarioLogueadoEsAdmin(){
