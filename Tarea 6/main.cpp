@@ -2,8 +2,11 @@
 #include <iostream>
 #include "Fabrica.h"
 #include "IControladorUsuario.h"
+#include <list>
 
 using namespace std;
+
+list<DtSala> listaDtSalas;
 
 void agregarUsuario(){
 	Fabrica* f = Fabrica::getInstancia();
@@ -50,7 +53,30 @@ int main() {
 				cout << "Nook"<< endl; 
 				
 		}else if (comando == 2){ //Alta Cine
-			
+			string calle;
+			int numero, capacidad, opcion;
+			cout << "Ingrese calle: " << endl; 
+			cin >> calle;	
+			cout << "Ingrese numero: " << endl; 
+			cin >> numero;
+			opcion=3;
+			while(opcion==3){
+				cout << "Ingrese capacidad: " << endl; 
+				cin >> capacidad;
+				DtSala ds = DtSala(0,capacidad);
+				listaDtSalas.push_back(ds);
+				cout << "1) Confirmar " << endl; 
+				cout << "2) Cancelar " << endl; 
+				cout << "3) Agregar otra sala " << endl; 
+				cin >> opcion;
+			}
+			if(opcion==2)
+				listaDtSalas.clear();
+			else if(opcion==1){
+				Fabrica* f = Fabrica::getInstancia();
+				IControladorCineFuncion* controladorCineFuncion= f->getIControladorCineFuncion();
+				controladorCineFuncion->agregarCine(DtDireccion(calle,numero),listaDtSalas);	
+			}
 			
 		}else if (comando == 3){//Alta Función
 		

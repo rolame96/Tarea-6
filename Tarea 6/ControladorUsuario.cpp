@@ -1,4 +1,5 @@
 #include "ControladorUsuario.h"
+#include <iostream>
 
 ControladorUsuario* ControladorUsuario::instancia = NULL;
 
@@ -21,9 +22,10 @@ void ControladorUsuario::agregarUsuario(string nickname, string password, string
 bool ControladorUsuario::iniciarSesion(string nickname, string password){
 	if(usuarioLogueado==NULL){
 		for (std::list<Usuario*>::iterator it=listaUsuarios.begin(); it != listaUsuarios.end(); ++it){
-			Usuario* u = dynamic_cast<Usuario*>(*it);
+			//Usuario* u = dynamic_cast<Usuario*>(*it);
+			Usuario* u = *it;
 			if (u->getNickname() == nickname && u->getPassword() == password){
-				usuarioLogueado = u;
+				usuarioLogueado = u;				
 				return true;
 			}	
 		}

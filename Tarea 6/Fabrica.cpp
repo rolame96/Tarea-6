@@ -15,4 +15,9 @@ IControladorUsuario* Fabrica::getIControladorUsuario(){
 	return c;
 }
 
+IControladorCineFuncion* Fabrica::getIControladorCineFuncion(){
+	IControladorCineFuncion* c = ControladorCineFuncion::getInstancia();
+	return c;
+}
+
 Fabrica::~Fabrica(){}
