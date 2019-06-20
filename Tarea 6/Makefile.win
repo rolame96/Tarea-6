@@ -1,28 +1,29 @@
 # Project: Project1
-# Makefile created by Dev-C++ 5.11
+# Makefile created by Dev-C++ 5.1.1.0
 
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o Usuario.o ControladorUsuario.o Fabrica.o DtDireccion.o Cine.o DtCine.o Sala.o DtSala.o ControladorCineFuncion.o
-LINKOBJ  = main.o Usuario.o ControladorUsuario.o Fabrica.o DtDireccion.o Cine.o DtCine.o Sala.o DtSala.o ControladorCineFuncion.o
-LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
-INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
-CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+OBJ      = main.o Usuario.o ControladorUsuario.o Fabrica.o DtDireccion.o Cine.o DtCine.o Sala.o DtSala.o ControladorCineFuncion.o Funcion.o Pelicula.o Comentario.o Puntaje.o Reserva.o Credito.o Debito.o DtHorario.o DtFuncion.o DtPelicula.o DtFecha.o ControladorPelicula.o $(RES)
+LINKOBJ  = main.o Usuario.o ControladorUsuario.o Fabrica.o DtDireccion.o Cine.o DtCine.o Sala.o DtSala.o ControladorCineFuncion.o Funcion.o Pelicula.o Comentario.o Puntaje.o Reserva.o Credito.o Debito.o DtHorario.o DtFuncion.o DtPelicula.o DtFecha.o ControladorPelicula.o $(RES)
+LIBS     = -L"D:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc  
+INCS     = -I"D:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" 
+CXXINCS  = -I"D:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" 
 BIN      = Lab6.exe
-CXXFLAGS = $(CXXINCS) 
-CFLAGS   = $(INCS) 
-RM       = rm.exe -f
+CXXFLAGS = $(CXXINCS)  
+CFLAGS   = $(INCS)  
+RM       = rm -f
 
 .PHONY: all all-before all-after clean clean-custom
 
-all: all-before $(BIN) all-after
+all: all-before Lab6.exe all-after
+
 
 clean: clean-custom
 	${RM} $(OBJ) $(BIN)
 
 $(BIN): $(OBJ)
-	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+	$(CPP) $(LINKOBJ) -o "Lab6.exe" $(LIBS)
 
 main.o: main.cpp
 	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
@@ -53,3 +54,39 @@ DtSala.o: DtSala.cpp
 
 ControladorCineFuncion.o: ControladorCineFuncion.cpp
 	$(CPP) -c ControladorCineFuncion.cpp -o ControladorCineFuncion.o $(CXXFLAGS)
+
+Funcion.o: Funcion.cpp
+	$(CPP) -c Funcion.cpp -o Funcion.o $(CXXFLAGS)
+
+Pelicula.o: Pelicula.cpp
+	$(CPP) -c Pelicula.cpp -o Pelicula.o $(CXXFLAGS)
+
+Comentario.o: Comentario.cpp
+	$(CPP) -c Comentario.cpp -o Comentario.o $(CXXFLAGS)
+
+Puntaje.o: Puntaje.cpp
+	$(CPP) -c Puntaje.cpp -o Puntaje.o $(CXXFLAGS)
+
+Reserva.o: Reserva.cpp
+	$(CPP) -c Reserva.cpp -o Reserva.o $(CXXFLAGS)
+
+Credito.o: Credito.cpp
+	$(CPP) -c Credito.cpp -o Credito.o $(CXXFLAGS)
+
+Debito.o: Debito.cpp
+	$(CPP) -c Debito.cpp -o Debito.o $(CXXFLAGS)
+
+DtHorario.o: DtHorario.cpp
+	$(CPP) -c DtHorario.cpp -o DtHorario.o $(CXXFLAGS)
+
+DtFuncion.o: DtFuncion.cpp
+	$(CPP) -c DtFuncion.cpp -o DtFuncion.o $(CXXFLAGS)
+
+DtPelicula.o: DtPelicula.cpp
+	$(CPP) -c DtPelicula.cpp -o DtPelicula.o $(CXXFLAGS)
+
+DtFecha.o: DtFecha.cpp
+	$(CPP) -c DtFecha.cpp -o DtFecha.o $(CXXFLAGS)
+
+ControladorPelicula.o: ControladorPelicula.cpp
+	$(CPP) -c ControladorPelicula.cpp -o ControladorPelicula.o $(CXXFLAGS)

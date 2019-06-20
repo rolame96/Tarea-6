@@ -75,7 +75,7 @@ int main() {
 			else if(opcion==1){
 				Fabrica* f = Fabrica::getInstancia();
 				IControladorCineFuncion* controladorCineFuncion= f->getIControladorCineFuncion();
-				controladorCineFuncion->agregarCine(DtDireccion(calle,numero),listaDtSalas);	
+				controladorCineFuncion->agregarCine(DtCine(0,DtDireccion(calle,numero)),listaDtSalas);	
 			}
 			
 		}else if (comando == 3){//Alta Función

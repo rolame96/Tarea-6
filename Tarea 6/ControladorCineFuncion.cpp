@@ -14,12 +14,12 @@ ControladorCineFuncion* ControladorCineFuncion::getInstancia(){
 	return instancia;
 }
 
-void ControladorCineFuncion::agregarCine(DtDireccion direccion, list<DtSala> listaDtSala){
+void ControladorCineFuncion::agregarCine(DtCine dtCine, list<DtSala> listaDtSala){
 	IControladorUsuario* c = ControladorUsuario::getInstancia();
 	if(c->usuarioLogueadoEsAdmin()){
 		idCine++;
 		int idSala=0;
-		Cine* nuevoCine = new Cine(idCine, direccion);
+		Cine* nuevoCine = new Cine(idCine, dtCine.getDireccion());
 		for (std::list<DtSala>::iterator it=listaDtSala.begin(); it != listaDtSala.end(); ++it){
 			idSala++;
 			DtSala ds= *it;

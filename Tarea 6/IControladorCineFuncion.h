@@ -6,7 +6,7 @@ using namespace std;
 
 class IControladorCineFuncion{
 	public:
-		virtual void agregarCine(DtDireccion,list<DtSala>)=0;
+		virtual void agregarCine(DtCine,list<DtSala>)=0;
 		virtual ~IControladorCineFuncion(){};
 };
 

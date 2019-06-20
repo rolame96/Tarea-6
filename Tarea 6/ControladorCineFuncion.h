@@ -17,7 +17,7 @@ class  ControladorCineFuncion: public IControladorCineFuncion{
 		ControladorCineFuncion();
 	public:
 		static ControladorCineFuncion* getInstancia();
-		void agregarCine(DtDireccion,list<DtSala>);
+		void agregarCine(DtCine,list<DtSala>);
 		~ControladorCineFuncion();
 };
 
