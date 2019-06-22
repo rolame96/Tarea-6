@@ -25,12 +25,17 @@ string Pelicula::getPoster(){
 }
 
 float Pelicula::getPuntajePelicula(){
-	int sum=0;
-	for (std::list<Puntaje*>::iterator it=listaPuntaje.begin(); it != listaPuntaje.end(); ++it){
-		Puntaje* p = *it;
-		sum=sum+p->getPuntos();
+	if (listaPuntaje.size() > 0){
+		int sum=0;
+		for (std::list<Puntaje*>::iterator it=listaPuntaje.begin(); it != listaPuntaje.end(); ++it){
+			Puntaje* p = *it;
+			sum=sum+p->getPuntos();
+		}
+		return sum/listaPuntaje.size();
 	}
-	return sum/listaPuntaje.size();
+	else
+		return 0;
+	
 }
 
 void Pelicula::agregarPuntaje(Puntaje* puntaje){

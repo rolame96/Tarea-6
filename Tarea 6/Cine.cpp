@@ -27,6 +27,10 @@ void Cine::agregarSala(Sala* sala){
 	this->listaSala.push_back(sala);
 }
 
+list<Sala*> Cine::getlistaSala(){
+	return this->listaSala;
+}
+
 ostream& operator <<(ostream& salida, const Cine& cine) {
 	cout << cine.id << " - " << cine.direccion << "\n";
 	return salida;

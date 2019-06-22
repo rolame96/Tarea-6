@@ -2,7 +2,9 @@
 #include <iostream>
 #include "Fabrica.h"
 #include "IControladorUsuario.h"
+#include "IControladorPelicula.h"
 #include <list>
+
 
 using namespace std;
 
@@ -18,9 +20,32 @@ void agregarUsuario(){
 	contUsuario->agregarUsuario("federico", "12345", "www.google.com/5", false);
 	contUsuario->agregarUsuario("admin", "admin", "www.google.com/6", true);
 }
+void agregarPelicula(){
+	Fabrica* f = Fabrica::getInstancia();
+	IControladorPelicula* contPelicula= f->getIControladorPelicula();
+	contPelicula->agregarPelicula(DtPelicula("Esjubi du","sinosis","www.Boster.jpg",0));
+	contPelicula->agregarPelicula(DtPelicula("Madris","sinosisMadris","www.BosterMadris.jpg",0));
+}
 
-int main() {
+void agregarCine(){
+	
+	Fabrica* f = Fabrica::getInstancia();
+	IControladorCineFuncion* contCineFuncion= f->getIControladorCineFuncion();
+	list<DtSala> ls;
+	ls.push_back(DtSala(0,10));	
+	ls.push_back(DtSala(0,537));	
+	contCineFuncion->agregarCine(DtCine(0,DtDireccion("calle1",1)),ls);	
+	ls.push_back(DtSala(0,50));	
+	ls.push_back(DtSala(0,5327));	
+	contCineFuncion->agregarCine(DtCine(0,DtDireccion("calle2",2)),ls);	
+}
+int main() {	
 	agregarUsuario();
+	bool sesionOK = Fabrica::getInstancia()->getIControladorUsuario()->iniciarSesion("admin", "admin");
+	agregarPelicula();
+	agregarCine();
+	
+	
 	cout << "Bienvenido. Elija la opcion" << endl; 
 	while(true)
 	{		
@@ -79,8 +104,91 @@ int main() {
 			}
 			
 		}else if (comando == 3){//Alta Función
-		
-		
+			Fabrica* f = Fabrica::getInstancia();
+			IControladorUsuario* contUsuario = f->getIControladorUsuario();
+			IControladorPelicula* contPelicula = f->getIControladorPelicula();		
+			IControladorCineFuncion* contCineFuncion = f->getIControladorCineFuncion();	
+			int peliculaSeleccionada = 0,cineSeleccionado = 0,cont = 0,salaSeleccionada = 0;
+			
+			
+			if (contUsuario->usuarioLogueadoEsAdmin()){
+				cout << "Seleccione pelicula " << endl; 
+				DtPelicula p;
+				list<DtPelicula> lp = contPelicula->listarPelicula();
+				for (std::list<DtPelicula>::iterator it=lp.begin(); it != lp.end(); ++it){
+					cont++;
+					p = *it;
+					cout << cont << " - "<< p.getTitulo() << endl; 					
+				}
+				cin >> peliculaSeleccionada;
+				cont = 0;
+				for (std::list<DtPelicula>::iterator it=lp.begin(); it != lp.end(); ++it){
+					cont++;
+					if (cont == peliculaSeleccionada ){					
+						p = *it;					
+						break;	
+					}
+				}
+				contPelicula->seleccionarPelicula(p);				
+				
+				
+				cout << "Seleccione cine " << endl; 
+				DtCine c;				
+				list<DtCine> lc = contCineFuncion->listarCine();
+				for (std::list<DtCine>::iterator it=lc.begin(); it != lc.end(); ++it){
+					c = *it;
+					cout << c.getId() << endl; 					
+				}
+				cin >> cineSeleccionado;
+				for (std::list<DtCine>::iterator it=lc.begin(); it != lc.end(); ++it){
+					c = *it;
+					if (c.getId() == cineSeleccionado ){
+						contCineFuncion->SeleccionarCine(c);
+						break;
+					}																		
+											
+				}
+					
+				cout << "Seleccione sala " << endl; 
+				DtSala s;							
+				list<DtSala> ls = contCineFuncion->listarSala(c);							
+				for (std::list<DtSala>::iterator it=ls.begin(); it != ls.end(); ++it){
+					s = *it;
+					cout << s.getId() << endl; 					
+				}
+				cin >> salaSeleccionada;
+				for (std::list<DtSala>::iterator it=ls.begin(); it != ls.end(); ++it){
+					s = *it;
+					if (s.getId() == salaSeleccionada )	{
+						contCineFuncion->SeleccionarSala(s);
+						break;						
+					}																								
+				}
+				int dia,mes, anio,hora,minutos;
+				cout << "Seleccione fecha de funcion " << endl; 
+				cout << "dia " << endl; 
+				cin >> dia;
+				cout << "mes " << endl; 
+				cin >> mes;
+				cout << "anio " << endl; 
+				cin >> anio;	
+				DtFecha dtFecha = DtFecha(dia,mes,anio);
+				
+				cout << "Seleccione hora de funcion " << endl; 
+				cout << "hora " << endl; 
+				cin >> hora;
+				cout << "minutos " << endl; 
+				cin >> minutos;
+				DtHorario dtHorario = DtHorario(hora,minutos);
+
+				contCineFuncion->agregarFuncion(DtFuncion(0,dtFecha,dtHorario));
+				
+				
+			}else
+				cout << "No es admin " << endl; 
+
+				
+				
 		}else if (comando == 4){//Crear Reserva
 
 			

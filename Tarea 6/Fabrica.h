@@ -4,6 +4,8 @@
 #include "ControladorUsuario.h"
 #include "ControladorCineFuncion.h"
 #include "IControladorCineFuncion.h"
+#include "IControladorPelicula.h"
+#include "ControladorPelicula.h"
 
 
 class Fabrica{
@@ -14,6 +16,7 @@ class Fabrica{
 		static Fabrica* getInstancia();
 		IControladorUsuario* getIControladorUsuario();
 		IControladorCineFuncion* getIControladorCineFuncion();
+		IControladorPelicula* getIControladorPelicula();
 		~Fabrica();
 };
 

@@ -1,6 +1,7 @@
 #ifndef IControladorPelicula_H
 #define IControladorPelicula_H
 #include <string>
+#include "DtPelicula.h"
 using namespace std;
 
 class IControladorPelicula{

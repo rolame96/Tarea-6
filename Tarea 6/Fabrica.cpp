@@ -20,4 +20,9 @@ IControladorCineFuncion* Fabrica::getIControladorCineFuncion(){
 	return c;
 }
 
+IControladorPelicula* Fabrica::getIControladorPelicula(){
+	IControladorPelicula* c = ControladorPelicula::getInstancia();
+	return c;
+}
+
 Fabrica::~Fabrica(){}

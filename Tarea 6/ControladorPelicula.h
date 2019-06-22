@@ -18,6 +18,7 @@ class  ControladorPelicula: public IControladorPelicula{
 		static ControladorPelicula* getInstancia();
 		void agregarPelicula(DtPelicula);
 		list<DtPelicula> listarPelicula();
+		Pelicula* getpeliculaSeleccionada();
 		void seleccionarPelicula(DtPelicula);
 		~ControladorPelicula();
 };

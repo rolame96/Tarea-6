@@ -22,6 +22,7 @@ class Cine{
 		DtDireccion getDireccion();
 		DtCine getDatosCine();
 		void agregarSala(Sala*);
+		list<Sala*> getlistaSala();
 		friend ostream& operator << (ostream&, const Cine&);
 		~Cine();
 

@@ -37,4 +37,8 @@ void ControladorPelicula::seleccionarPelicula(DtPelicula dtPelicula){
  		}
 	}	
 }
+Pelicula* ControladorPelicula::getpeliculaSeleccionada(){
+	return this->peliculaSeleccionada;
+}
+
 ControladorPelicula::~ControladorPelicula(){}
