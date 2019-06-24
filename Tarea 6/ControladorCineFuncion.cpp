@@ -42,6 +42,16 @@ void ControladorCineFuncion::agregarFuncion(DtFuncion dtFuncion){
 	listaFuncion.push_back(nuevaFuncion);
 }
 
+void ControladorCineFuncion::SeleccionarFuncion(DtFuncion dtFuncion){
+	for (std::list<Funcion*>::iterator it=listaFuncion.begin(); it != listaFuncion.end(); ++it){
+		Funcion* f = *it;
+		if(f->getId()==dtFuncion.getId()){
+ 			funcionSeleccionada = f;
+			break;	    
+ 		}
+	}		
+}
+
 void ControladorCineFuncion::SeleccionarCine(DtCine dtCine){
 	for (std::list<Cine*>::iterator it=listaCine.begin(); it != listaCine.end(); ++it){
 		Cine* c = *it;
@@ -51,11 +61,8 @@ void ControladorCineFuncion::SeleccionarCine(DtCine dtCine){
  		}
 	}	
 }
+
 void ControladorCineFuncion::SeleccionarSala(DtSala dtSala){
-	
-	/*for (std::list<Cine*>::iterator it=listaCine.begin(); it != listaCine.end(); ++it){
-		Cine* c = *it;
-		if(c->getId()==cineSeleccionado->getId()){*/
 	for (std::list<Sala*>::iterator it=cineSeleccionado->getlistaSala().begin(); it != cineSeleccionado->getlistaSala().end(); ++it){
 		Sala* s = *it;
 		if(s->getId()==dtSala.getId()){
@@ -65,7 +72,19 @@ void ControladorCineFuncion::SeleccionarSala(DtSala dtSala){
 	}	
 		
 }
-	 	
+
+list<DtCine> ControladorCineFuncion::listarCinePeliculaSeleccionada(){
+	ControladorPelicula* c = ControladorPelicula::getInstancia();
+	for (std::list<Funcion*>::iterator it=listaFuncion.begin(); it != listaFuncion.end(); ++it){
+		Funcion* f = *it;
+		if(f->getPelicula()->getTitulo()==c->getpeliculaSeleccionada()->getTitulo()){
+ 			funcionSeleccionada = f;
+			break;	    
+ 		}
+	}
+	
+}
+
 list<DtCine> ControladorCineFuncion::listarCine(){
 	list<DtCine> listaDtCine;
 	for (std::list<Cine*>::iterator it=listaCine.begin(); it != listaCine.end(); ++it){
@@ -89,6 +108,10 @@ list<DtSala> ControladorCineFuncion::listarSala(DtCine dtCine){
 		}
 	}
 }
-		
+
+list<DtFuncion> ControladorCineFuncion::listarFuncionCineSeleccionadoPeliculaSeleccionada(){
+	
+	
+}
 
 ControladorCineFuncion::~ControladorCineFuncion(){}

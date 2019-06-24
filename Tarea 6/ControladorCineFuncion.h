@@ -18,6 +18,7 @@ class  ControladorCineFuncion: public IControladorCineFuncion{
 		list<Funcion*> listaFuncion;
 		int idCine;
 		int idFuncion;
+		Funcion* funcionSeleccionada;
 		Cine* cineSeleccionado;
 		Sala* salaSeleccionada;
 		ControladorCineFuncion();
@@ -25,10 +26,13 @@ class  ControladorCineFuncion: public IControladorCineFuncion{
 		static ControladorCineFuncion* getInstancia();
 		void agregarCine(DtCine,list<DtSala>);
 		void agregarFuncion(DtFuncion);
+		void SeleccionarFuncion(DtFuncion);
 		void SeleccionarCine(DtCine);
 	 	void SeleccionarSala(DtSala);
+	 	list<DtCine> listarCinePeliculaSeleccionada();
 		list<DtCine> listarCine();
 		list<DtSala> listarSala(DtCine);
+		list<DtFuncion> listarFuncionCineSeleccionadoPeliculaSeleccionada();
 		~ControladorCineFuncion();
 };
 

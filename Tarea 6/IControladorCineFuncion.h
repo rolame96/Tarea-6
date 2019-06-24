@@ -9,10 +9,13 @@ class IControladorCineFuncion{
 	public:
 		virtual void agregarCine(DtCine,list<DtSala>)=0;
 		virtual void agregarFuncion(DtFuncion)=0;
+		virtual void SeleccionarFuncion(DtFuncion)=0;
 		virtual void SeleccionarCine(DtCine)=0;
 		virtual void SeleccionarSala(DtSala)=0;
+		virtual list<DtCine> listarCinePeliculaSeleccionada()=0;
 		virtual list<DtCine> listarCine()=0;
 		virtual list<DtSala> listarSala(DtCine)=0;
+		virtual list<DtFuncion> listarFuncionCineSeleccionadoPeliculaSeleccionada()=0;
 		virtual ~IControladorCineFuncion(){};
 };
 

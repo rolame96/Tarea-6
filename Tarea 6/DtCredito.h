@@ -1,23 +1,23 @@
-#ifndef Credito_H
-#define Credito_H
-#include "Reserva.h"
+#ifndef DtCredito_H
+#define DtCredito_H
+#include "DtReserva.h"
 
 using namespace std;
 
 
-class Credito: public Reserva{
+class DtCredito: public DtReserva{
 	private:
 		float porcentajeDescuento;
 		string financiera;
 	public:
-		Credito();
-		Credito(float, string);
+		DtCredito();
+		DtCredito(float, string);
 		float getPorcentajeDescuento();
 		void setPorcentajeDescuento();
 		string getFinanciera();
 		void setFinanciera();
 		float obtenerPrecioTotal();
-		~Credito();
+		~DtCredito();
 };
 
 #endif
