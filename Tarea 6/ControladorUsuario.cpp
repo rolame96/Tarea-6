@@ -20,7 +20,7 @@ void ControladorUsuario::agregarUsuario(string nickname, string password, string
 }
 
 Usuario* ControladorUsuario::getUsuarioLogueado(){
-	this->usuarioLogueado;
+	return this->usuarioLogueado;
 }
 
 bool ControladorUsuario::iniciarSesion(string nickname, string password){
@@ -28,7 +28,6 @@ bool ControladorUsuario::iniciarSesion(string nickname, string password){
 		Usuario* u = NULL;
 		for (std::list<Usuario*>::iterator it=listaUsuarios.begin(); it != listaUsuarios.end(); ++it){
 			u = *it;
-			//cout << u->getNickname();
 			if (u->getNickname() == nickname && u->getPassword() == password){
 				usuarioLogueado = u;				
 				return true;

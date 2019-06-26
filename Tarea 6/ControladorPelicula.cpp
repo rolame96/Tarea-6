@@ -46,14 +46,10 @@ void ControladorPelicula::agregarPuntaje(DtPuntaje dtPuntaje){
 	ControladorUsuario* cu = ControladorUsuario::getInstancia();
 	Puntaje* p = NULL;
 	if(usuarioPuntuoPelicula()==true){
-		string uLogNickname;
-		string uPuntNickname;
 		list<Puntaje*> lp = peliculaSeleccionada->getlistaPuntaje();
 		for (std::list<Puntaje*>::iterator it=lp.begin(); it != lp.end(); ++it){
-			p = *it;		
-			uLogNickname = cu->getUsuarioLogueado()->getNickname();
-			uPuntNickname = p->getUsuario()->getNickname();
-			if(uLogNickname==uPuntNickname){
+			p = *it;
+			if(cu->getUsuarioLogueado()->getNickname()==p->getUsuario()->getNickname()){
 				p->setPuntos(dtPuntaje.getPuntos());
 				break;
 			}		
@@ -65,21 +61,13 @@ void ControladorPelicula::agregarPuntaje(DtPuntaje dtPuntaje){
 }
 
 bool ControladorPelicula::usuarioPuntuoPelicula(){
-	ControladorUsuario* cu = ControladorUsuario::getInstancia();
-	
+	ControladorUsuario* cu = ControladorUsuario::getInstancia();	
 	bool yaPuntuo=false;
 	Puntaje* p = NULL;
-	string uPuntNickname;
-	string uLogNickname;
-	Usuario* usuarioPuntaje = NULL;
 	list<Puntaje*> lp = peliculaSeleccionada->getlistaPuntaje();
 	for (std::list<Puntaje*>::iterator it=lp.begin(); it != lp.end(); ++it){
 		p = *it;
-		usuarioPuntaje = p->getUsuario();		
-		uPuntNickname = usuarioPuntaje->getNickname();
-		cout<<uPuntNickname;
-		uLogNickname = cu->getUsuarioLogueado()->getNickname();	
-		if(uLogNickname==uPuntNickname){
+		if(cu->getUsuarioLogueado()->getNickname()==p->getUsuario()->getNickname()){
 			yaPuntuo=true;
 			break;
 		}		
