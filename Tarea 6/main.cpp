@@ -10,6 +10,7 @@ using namespace std;
 
 list<DtSala> listaDtSalas;
 
+
 void agregarUsuario(){
 	Fabrica* f = Fabrica::getInstancia();
 	IControladorUsuario* contUsuario= f->getIControladorUsuario();
@@ -129,8 +130,7 @@ int main() {
 						break;	
 					}
 				}
-				contPelicula->seleccionarPelicula(p);				
-				
+				contPelicula->seleccionarPelicula(p);	
 				
 				cout << "Seleccione cine " << endl; 
 				DtCine c;				
@@ -193,8 +193,42 @@ int main() {
 
 			
 		}else if (comando == 5){//Puntuar Película
-			
-			
+			Fabrica* f = Fabrica::getInstancia();
+			IControladorPelicula* contPelicula = f->getIControladorPelicula();
+			int peliculaSeleccionada=0, cont=0, aux=0, puntaje=0;
+			cout << "Seleccione pelicula " << endl; 
+			DtPelicula p;
+			list<DtPelicula> lp = contPelicula->listarPelicula();
+			for (std::list<DtPelicula>::iterator it=lp.begin(); it != lp.end(); ++it){
+				cont++;
+				p = *it;
+				cout << cont << " - "<< p.getTitulo() << endl; 					
+			}
+			cin >> peliculaSeleccionada;
+			cont = 0;
+			for (std::list<DtPelicula>::iterator it=lp.begin(); it != lp.end(); ++it){
+				cont++;
+				if (cont == peliculaSeleccionada ){					
+					p = *it;					
+					break;	
+				}
+			}
+			contPelicula->seleccionarPelicula(p);
+			if(contPelicula->usuarioPuntuoPelicula()){
+				cout << "Puntaje anterior: " << contPelicula->mostrarPuntaje() << endl;
+				cout << "Desea modificar puntaje? Si=1 No=2 " << endl; 
+				cin >> aux;
+				if(aux==1){
+					cout << "Ingrese puntaje: " << endl; 
+					cin >> puntaje;
+					contPelicula->agregarPuntaje(DtPuntaje(puntaje));
+				}else
+					break;
+			}else{
+				cout << "Ingrese puntaje: " << endl; 
+				cin >> puntaje;
+				contPelicula->agregarPuntaje(puntaje);
+			}
 		}else if (comando == 6){//Comentar Película
 		
 		

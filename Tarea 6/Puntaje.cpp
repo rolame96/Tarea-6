@@ -14,7 +14,7 @@ int Puntaje::getPuntos(){
 	return this->puntos;
 }
 
-void Puntaje::setPuntos(){
+void Puntaje::setPuntos(int puntos){
 	this->puntos=puntos;
 }
 
@@ -22,7 +22,7 @@ Usuario* Puntaje::getUsuario(){
 	return this->usuario;
 }
 
-void Puntaje::setUsuario(){
+void Puntaje::setUsuario(Usuario* usuario){
 	this->usuario=usuario;
 }
 

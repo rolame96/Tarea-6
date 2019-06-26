@@ -15,17 +15,17 @@ class Reserva{
 		Usuario* usuario;
 	public:
 		Reserva();
-		Reserva(float, int, Funcion*, Usuario*);
+		Reserva(int, float, int, Funcion*, Usuario*);
 		int getId();
-		void setId();
+		void setId(int);
 		float getCosto();
-		void setCosto();
+		void setCosto(float);
 		int getCantEntradas();
-		void setCantEntradas();
+		void setCantEntradas(int);
 		Funcion* getFuncion();
-		void setFuncion();
+		void setFuncion(Funcion*);
 		Usuario* getUsuario();
-		void setUsuario();
+		void setUsuario(Usuario*);
 		virtual float obtenerPrecioTotal() = 0;
 		virtual ~Reserva();
 };

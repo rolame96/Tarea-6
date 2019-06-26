@@ -4,8 +4,8 @@
 CPP      = g++.exe -D__DEBUG__
 CC       = gcc.exe -D__DEBUG__
 WINDRES  = windres.exe
-OBJ      = main.o Usuario.o ControladorUsuario.o Fabrica.o DtDireccion.o Cine.o DtCine.o Sala.o DtSala.o ControladorCineFuncion.o Funcion.o Pelicula.o Comentario.o Puntaje.o Reserva.o Credito.o Debito.o DtHorario.o DtFuncion.o DtPelicula.o DtFecha.o ControladorPelicula.o Untitled1.o Untitled2.o ControladorReserva.o DtReserva.o
-LINKOBJ  = main.o Usuario.o ControladorUsuario.o Fabrica.o DtDireccion.o Cine.o DtCine.o Sala.o DtSala.o ControladorCineFuncion.o Funcion.o Pelicula.o Comentario.o Puntaje.o Reserva.o Credito.o Debito.o DtHorario.o DtFuncion.o DtPelicula.o DtFecha.o ControladorPelicula.o Untitled1.o Untitled2.o ControladorReserva.o DtReserva.o
+OBJ      = main.o Usuario.o ControladorUsuario.o Fabrica.o DtDireccion.o Cine.o DtCine.o Sala.o DtSala.o ControladorCineFuncion.o Funcion.o Pelicula.o Comentario.o Puntaje.o Reserva.o Credito.o Debito.o DtHorario.o DtFuncion.o DtPelicula.o DtFecha.o ControladorPelicula.o Untitled1.o Untitled2.o ControladorReserva.o DtReserva.o DtDebito.o DtCredito.o DtPuntaje.o
+LINKOBJ  = main.o Usuario.o ControladorUsuario.o Fabrica.o DtDireccion.o Cine.o DtCine.o Sala.o DtSala.o ControladorCineFuncion.o Funcion.o Pelicula.o Comentario.o Puntaje.o Reserva.o Credito.o Debito.o DtHorario.o DtFuncion.o DtPelicula.o DtFecha.o ControladorPelicula.o Untitled1.o Untitled2.o ControladorReserva.o DtReserva.o DtDebito.o DtCredito.o DtPuntaje.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -g3
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
@@ -95,3 +95,12 @@ ControladorReserva.o: ControladorReserva.cpp
 
 DtReserva.o: DtReserva.cpp
 	$(CPP) -c DtReserva.cpp -o DtReserva.o $(CXXFLAGS)
+
+DtDebito.o: DtDebito.cpp
+	$(CPP) -c DtDebito.cpp -o DtDebito.o $(CXXFLAGS)
+
+DtCredito.o: DtCredito.cpp
+	$(CPP) -c DtCredito.cpp -o DtCredito.o $(CXXFLAGS)
+
+DtPuntaje.o: DtPuntaje.cpp
+	$(CPP) -c DtPuntaje.cpp -o DtPuntaje.o $(CXXFLAGS)

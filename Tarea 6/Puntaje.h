@@ -14,9 +14,9 @@ class Puntaje{
 		Puntaje();
 		Puntaje(int, Usuario*);
 		int getPuntos();
-		void setPuntos();
+		void setPuntos(int);
 		Usuario* getUsuario();
-		void setUsuario();
+		void setUsuario(Usuario*);
 		~Puntaje();
 };
 

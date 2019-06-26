@@ -13,9 +13,9 @@ class Credito: public Reserva{
 		Credito();
 		Credito(float, string);
 		float getPorcentajeDescuento();
-		void setPorcentajeDescuento();
+		void setPorcentajeDescuento(float);
 		string getFinanciera();
-		void setFinanciera();
+		void setFinanciera(string);
 		float obtenerPrecioTotal();
 		~Credito();
 };

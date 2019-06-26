@@ -38,6 +38,10 @@ float Pelicula::getPuntajePelicula(){
 	
 }
 
+list<Puntaje*> Pelicula::getlistaPuntaje(){
+	return this->listaPuntaje;
+}
+
 void Pelicula::agregarPuntaje(Puntaje* puntaje){
 	this->listaPuntaje.push_back(puntaje);
 }

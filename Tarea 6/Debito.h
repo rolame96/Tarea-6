@@ -12,7 +12,7 @@ class Debito: public Reserva{
 		Debito();
 		Debito(string);
 		string getBanco();
-		void setBanco();
+		void setBanco(string);
 		float obtenerPrecioTotal();
 		~Debito();
 };

@@ -19,6 +19,10 @@ void ControladorUsuario::agregarUsuario(string nickname, string password, string
 	listaUsuarios.push_back(nuevoUsuario);
 }
 
+Usuario* ControladorUsuario::getUsuarioLogueado(){
+	this->usuarioLogueado;
+}
+
 bool ControladorUsuario::iniciarSesion(string nickname, string password){
 	if(usuarioLogueado==NULL){
 		for (std::list<Usuario*>::iterator it=listaUsuarios.begin(); it != listaUsuarios.end(); ++it){

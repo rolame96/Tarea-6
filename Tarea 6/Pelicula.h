@@ -23,6 +23,7 @@ class Pelicula{
 		string getTitulo();
 		string getSinopsis();
 		string getPoster();
+		list<Puntaje*> getlistaPuntaje();
 		float getPuntajePelicula();
 		void agregarPuntaje(Puntaje*);
 		void agregarComentario(Comentario*);	
