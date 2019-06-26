@@ -1,5 +1,6 @@
 #ifndef DtPuntaje_H
 #define DtPuntaje_H
+#include <iostream>
 
 using namespace std;
 

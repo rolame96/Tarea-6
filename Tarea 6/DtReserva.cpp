@@ -3,37 +3,25 @@
 DtReserva::DtReserva () {
 	this->id=0;
 	this->costo=0;
-	this->cantEntrada=0;
+	this->cantEntradas=0;
 }
 
-DtReserva::DtReserva (int id, float costo,int cantEntrada) {
+DtReserva::DtReserva (int id, float costo,int cantEntradas) {
 	this->id = id;
 	this->costo = costo;
-	this->cantEntrada = cantEntrada;
+	this->cantEntradas = cantEntradas;
 }
 
 int DtReserva::getId(){
 	return this->id;
 }
 
-void DtReserva::setId(){ 
-	this->id=id;
-}
-
 float DtReserva::getCosto(){ 
 	return this->costo;
 }
 
-void DtReserva::setCosto(){ 
-	this->costo=costo;
-}
-
-int DtReserva::getCantEntrada(){
-	return this->cantEntrada;
-}
-
-void DtReserva::setCantEntrada(){ 
-	this->cantEntrada=cantEntrada;
+int DtReserva::getCantEntradas(){
+	return this->cantEntradas;
 }
 
 DtReserva::~DtReserva(){}

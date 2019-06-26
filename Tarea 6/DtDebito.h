@@ -9,13 +9,13 @@ using namespace std;
 class DtDebito:public DtReserva{
 
 private : 
-	string banco
+	string banco;
+	float precioTotal;
 public :
-	Debito();
-	Debito(string);
+	DtDebito();
+	DtDebito(string,float);
 	string getBanco();
-	void setBanco();
 	float obtenerPrecioTotal();
-	~Debito();
+	~DtDebito();
 };
 #endif

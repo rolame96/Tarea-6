@@ -19,6 +19,7 @@ void ControladorReserva::confirmarReserva(){
 }
 
 void ControladorReserva::crearReserva(DtReserva dtReserva){
+	/*
 	idReserva++;
 	try{
 		DtCredito dtCredito = dynamic_cast<const DtCredito&>(dtReserva);				
@@ -35,14 +36,15 @@ void ControladorReserva::crearReserva(DtReserva dtReserva){
 	        	cout << "Error al registrar socio.\n";
 	      }
 	}
+	*/
 }
 
 void ControladorReserva::cancelarReserva(){
 	delete this->nuevaReserva;
 }
 
-float ControladorReserva::monstrarCosto(DtReserva dtReserva){
-	return this->nuevaReserva->
+float ControladorReserva::mostrarCosto(){
+	return 1;
 }
 
-ControladorPelicula::~ControladorPelicula(){}
+ControladorReserva::~ControladorReserva(){}

@@ -16,10 +16,10 @@ class  ControladorReserva: public IControladorReserva{
 		ControladorReserva();
 	public:
 		static ControladorReserva* getInstancia();
-		void confirmarReserva(DtReserva);
+		void confirmarReserva();
 		void crearReserva(DtReserva);
-		void cancelarReserva(DtReserva);
-		float monstrarCosto();
+		void cancelarReserva();
+		float mostrarCosto();
 		string ingresarBanco(string);
 		string ingresarFinanciera(string);
 		~ControladorReserva();

@@ -2,7 +2,7 @@
 FileName=Lab6.dev
 Name=Project1
 Type=1
-Ver=2
+Ver=1
 ObjFiles=
 Includes=
 Libs=
@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=000000000000000000100000000
-UnitCount=59
+UnitCount=57
 
 [VersionInfo]
 Major=1
@@ -511,26 +511,6 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit49]
-FileName=ControladorReserva.h
-CompileCpp=1
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit50]
-FileName=ControladorReserva.cpp
-CompileCpp=1
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit51]
 FileName=IControladorReserva.h
 CompileCpp=1
 Folder=
@@ -540,25 +520,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit47]
-FileName=Untitled1
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit48]
-FileName=Untitled2
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit52]
+[Unit50]
 FileName=DtReserva.h
 CompileCpp=1
 Folder=
@@ -568,7 +530,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit53]
+[Unit51]
 FileName=DtReserva.cpp
 CompileCpp=1
 Folder=
@@ -578,7 +540,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit54]
+[Unit52]
 FileName=DtDebito.h
 CompileCpp=1
 Folder=
@@ -588,7 +550,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit55]
+[Unit53]
 FileName=DtDebito.cpp
 CompileCpp=1
 Folder=
@@ -598,7 +560,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit56]
+[Unit54]
 FileName=DtCredito.h
 CompileCpp=1
 Folder=
@@ -608,8 +570,28 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit57]
+[Unit55]
 FileName=DtCredito.cpp
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit56]
+FileName=DtPuntaje.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit57]
+FileName=DtPuntaje.cpp
 CompileCpp=1
 Folder=
 Compile=1
@@ -630,6 +612,26 @@ BuildCmd=
 
 [Unit59]
 FileName=DtPuntaje.cpp
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit47]
+FileName=ControladorReserva.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit48]
+FileName=ControladorReserva.cpp
 CompileCpp=1
 Folder=
 Compile=1
