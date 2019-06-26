@@ -20,8 +20,6 @@ class  ControladorReserva: public IControladorReserva{
 		void crearReserva(DtReserva);
 		void cancelarReserva();
 		float mostrarCosto();
-		string ingresarBanco(string);
-		string ingresarFinanciera(string);
 		~ControladorReserva();
 };
 

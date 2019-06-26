@@ -24,8 +24,9 @@ void agregarUsuario(){
 void agregarPelicula(){
 	Fabrica* f = Fabrica::getInstancia();
 	IControladorPelicula* contPelicula= f->getIControladorPelicula();
-	contPelicula->agregarPelicula(DtPelicula("Esjubi du","sinosis","www.Boster.jpg",0));
-	contPelicula->agregarPelicula(DtPelicula("Madris","sinosisMadris","www.BosterMadris.jpg",0));
+	contPelicula->agregarPelicula(DtPelicula("Esjubi du","sinosis Esjubi du","www.BosterEsjubi.jpg",0));
+	contPelicula->agregarPelicula(DtPelicula("Madris","sinosis Madris","www.BosterMadris.jpg",0));
+	contPelicula->agregarPelicula(DtPelicula("dragonbol seta","sinosisMadris dragonbol seta","www.dragonbol.jpg",0));
 }
 
 void agregarCine(){
