@@ -4,12 +4,16 @@ Pelicula::Pelicula () {
 	this->titulo = "";
 	this->sinopsis = "";
 	this->poster = "";
+	this->listaPuntaje.clear();
+	this->listaComentario.clear();
 }
 
 Pelicula::Pelicula (string titulo,string sinopsis, string poster) {
 	this->titulo = titulo;
 	this->sinopsis = sinopsis;
 	this->poster = poster;
+	this->listaPuntaje.clear();
+	this->listaComentario.clear();	
 }
 
 string Pelicula::getTitulo(){ 
