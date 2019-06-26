@@ -36,10 +36,10 @@ void agregarCine(){
 	list<DtSala> ls;
 	ls.push_back(DtSala(0,10));	
 	ls.push_back(DtSala(0,537));	
-	contCineFuncion->agregarCine(DtCine(0,DtDireccion("calle1",1)),ls);	
+	contCineFuncion->agregarCine(DtCine(0,DtDireccion("calle1",1111)),ls);	
 	ls.push_back(DtSala(0,50));	
 	ls.push_back(DtSala(0,5327));	
-	contCineFuncion->agregarCine(DtCine(0,DtDireccion("calle2",2)),ls);	
+	contCineFuncion->agregarCine(DtCine(0,DtDireccion("calle2",1122)),ls);	
 }
 int main() {	
 	agregarUsuario();
@@ -77,7 +77,7 @@ int main() {
 			if (sesionOK)			
 				cout << "ok" << endl;
 			else	
-				cout << "Nook"<< endl; 
+				cout << "No ok"<< endl; 
 				
 		}else if (comando == 2){ //Alta Cine
 			string calle;
@@ -230,6 +230,7 @@ int main() {
 				cin >> puntaje;
 				contPelicula->agregarPuntaje(puntaje);
 			}
+			cout << "Puntaje ingresado." << endl;
 		}else if (comando == 6){//Comentar Película
 		
 		
