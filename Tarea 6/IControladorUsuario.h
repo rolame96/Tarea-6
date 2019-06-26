@@ -1,7 +1,7 @@
 #ifndef IControladorUsuario_H
 #define IControladorUsuario_H
-#include <string>
 #include "Usuario.h"
+
 using namespace std;
 
 class IControladorUsuario{

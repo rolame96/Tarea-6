@@ -8,6 +8,8 @@
 #include "IControladorUsuario.h"
 #include "Puntaje.h"
 #include "ControladorUsuario.h"
+#include "Usuario.h"
+#include <string>
 
 using namespace std;
 

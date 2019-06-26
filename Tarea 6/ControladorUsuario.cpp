@@ -25,9 +25,10 @@ Usuario* ControladorUsuario::getUsuarioLogueado(){
 
 bool ControladorUsuario::iniciarSesion(string nickname, string password){
 	if(usuarioLogueado==NULL){
+		Usuario* u = NULL;
 		for (std::list<Usuario*>::iterator it=listaUsuarios.begin(); it != listaUsuarios.end(); ++it){
-			//Usuario* u = dynamic_cast<Usuario*>(*it);
-			Usuario* u = *it;
+			u = *it;
+			//cout << u->getNickname();
 			if (u->getNickname() == nickname && u->getPassword() == password){
 				usuarioLogueado = u;				
 				return true;

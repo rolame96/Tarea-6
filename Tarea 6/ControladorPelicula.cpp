@@ -29,7 +29,7 @@ list<DtPelicula> ControladorPelicula::listarPelicula(){
 }
 
 DtPuntaje ControladorPelicula::mostrarPuntaje(){
-	IControladorUsuario* cu = ControladorUsuario::getInstancia();
+	ControladorUsuario* cu = ControladorUsuario::getInstancia();
 	Puntaje* p;
 	list<Puntaje*> lp = peliculaSeleccionada->getlistaPuntaje();
 	for (std::list<Puntaje*>::iterator it=lp.begin(); it != lp.end(); ++it){
@@ -43,13 +43,17 @@ DtPuntaje ControladorPelicula::mostrarPuntaje(){
 }
 
 void ControladorPelicula::agregarPuntaje(DtPuntaje dtPuntaje){
-	IControladorUsuario* cu = ControladorUsuario::getInstancia();
-	Puntaje* p;
+	ControladorUsuario* cu = ControladorUsuario::getInstancia();
+	Puntaje* p = NULL;
 	if(usuarioPuntuoPelicula()==true){
+		string uLogNickname;
+		string uPuntNickname;
 		list<Puntaje*> lp = peliculaSeleccionada->getlistaPuntaje();
 		for (std::list<Puntaje*>::iterator it=lp.begin(); it != lp.end(); ++it){
-			p = *it;
-			if(p->getUsuario()->getNickname()==cu->getUsuarioLogueado()->getNickname()){
+			p = *it;		
+			uLogNickname = cu->getUsuarioLogueado()->getNickname();
+			uPuntNickname = p->getUsuario()->getNickname();
+			if(uLogNickname==uPuntNickname){
 				p->setPuntos(dtPuntaje.getPuntos());
 				break;
 			}		
@@ -61,13 +65,19 @@ void ControladorPelicula::agregarPuntaje(DtPuntaje dtPuntaje){
 }
 
 bool ControladorPelicula::usuarioPuntuoPelicula(){
-	IControladorUsuario* c = ControladorUsuario::getInstancia();
+	ControladorUsuario* cu = ControladorUsuario::getInstancia();
+	
 	bool yaPuntuo=false;
-	Puntaje* p;
+	Puntaje* p = NULL;
+	string uPuntNickname;
+	string uLogNickname;
 	list<Puntaje*> lp = peliculaSeleccionada->getlistaPuntaje();
 	for (std::list<Puntaje*>::iterator it=lp.begin(); it != lp.end(); ++it){
 		p = *it;
-		if(p->getUsuario()->getNickname()==c->getUsuarioLogueado()->getNickname()){
+		uPuntNickname = p->getUsuario()->getNickname();
+		cout<<uPuntNickname;
+		uLogNickname = cu->getUsuarioLogueado()->getNickname();	
+		if(uLogNickname==uPuntNickname){
 			yaPuntuo=true;
 			break;
 		}		
@@ -84,6 +94,7 @@ void ControladorPelicula::seleccionarPelicula(DtPelicula dtPelicula){
  		}
 	}	
 }
+
 Pelicula* ControladorPelicula::getpeliculaSeleccionada(){
 	return this->peliculaSeleccionada;
 }

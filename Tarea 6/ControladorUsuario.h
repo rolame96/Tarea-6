@@ -3,6 +3,7 @@
 #include "Usuario.h"
 #include "IControladorUsuario.h"
 #include <list>
+#include <string>
 
 using namespace std;
 

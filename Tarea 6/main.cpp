@@ -3,6 +3,8 @@
 #include "Fabrica.h"
 #include "IControladorUsuario.h"
 #include "IControladorPelicula.h"
+#include "IControladorCineFuncion.h"
+#include "IControladorReserva.h"
 #include <list>
 
 
