@@ -71,10 +71,12 @@ bool ControladorPelicula::usuarioPuntuoPelicula(){
 	Puntaje* p = NULL;
 	string uPuntNickname;
 	string uLogNickname;
+	Usuario* usuarioPuntaje = NULL;
 	list<Puntaje*> lp = peliculaSeleccionada->getlistaPuntaje();
 	for (std::list<Puntaje*>::iterator it=lp.begin(); it != lp.end(); ++it){
 		p = *it;
-		uPuntNickname = p->getUsuario()->getNickname();
+		usuarioPuntaje = p->getUsuario();		
+		uPuntNickname = usuarioPuntaje->getNickname();
 		cout<<uPuntNickname;
 		uLogNickname = cu->getUsuarioLogueado()->getNickname();	
 		if(uLogNickname==uPuntNickname){
