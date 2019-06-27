@@ -5,7 +5,6 @@
 #include "IControladorPelicula.h"
 #include <list>
 #include "DtPuntaje.h"
-#include "IControladorUsuario.h"
 #include "Puntaje.h"
 #include "ControladorUsuario.h"
 #include "Usuario.h"

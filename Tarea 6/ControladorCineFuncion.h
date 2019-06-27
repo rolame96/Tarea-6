@@ -34,6 +34,7 @@ class  ControladorCineFuncion: public IControladorCineFuncion{
 		list<DtCine> listarCine();
 		list<DtSala> listarSala(DtCine);
 		list<DtFuncion> listarFuncionCineSeleccionadoPeliculaSeleccionada();
+		Funcion* getFuncionSeleccionada();
 		~ControladorCineFuncion();
 };
 

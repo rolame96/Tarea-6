@@ -12,7 +12,6 @@ class IControladorPelicula{
 		virtual list<DtPelicula> listarPelicula()=0;
 		virtual bool usuarioPuntuoPelicula()=0;
 		virtual DtPuntaje mostrarPuntaje()=0;
-		virtual Pelicula* getpeliculaSeleccionada()=0;
 		virtual DtPelicula getDatosPeliculaSeleccionada()=0;
 		virtual void agregarPuntaje(DtPuntaje)=0;
 		virtual void seleccionarPelicula(DtPelicula)=0;

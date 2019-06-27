@@ -4,7 +4,7 @@ Debito::Debito () {
 	this->banco=" ";
 }
 
-Debito::Debito (string banco): Reserva(id, costo, cantEntradas, funcion, usuario) {
+Debito::Debito (string banco):Reserva(id, costo, cantEntradas, funcion, usuario) {
 	this->banco = banco;
 }
 

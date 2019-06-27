@@ -19,24 +19,24 @@ void ControladorReserva::confirmarReserva(){
 }
 
 void ControladorReserva::crearReserva(DtReserva dtReserva){
-	/*
-	idReserva++;
+	
+	ControladorUsuario* cu = ControladorUsuario::getInstancia();
+	ControladorCineFuncion* ccf = ControladorCineFuncion::getInstancia();	
 	try{
-		DtCredito dtCredito = dynamic_cast<const DtCredito&>(dtReserva);				
-		nuevaReserva = new Credito(idReserva, 100, DtCredito.getCantEntradas(), DtCredito.);											
-		//cout << "-------------------------- agrego GATO en registrar socio " << mascota->getNombre()  <<"\n";	
+		DtCredito dtCredito = dynamic_cast<const DtCredito&>(dtReserva);
+		idReserva++;
+		//int id, float costo,int cantEntradas, Funcion* funcion, Usuario* usuario
+		nuevaReserva = new Credito(idReserva, 100, dtCredito.getCantEntradas(), ccf->getFuncionSeleccionada(), cu->getUsuarioLogueado(), dtCredito.getPorcentajeDescuento(), dtCredito.getFinanciera());											
 		}catch(std::bad_cast){
 			try{
-			
-				//DtPerro dtPerro = dynamic_cast<DtPerro&>(dtMascota);
-				DtPerro dtPerro = dynamic_cast<const DtPerro&>(dtMascota);
-				mascota = new Perro(dtPerro.getNombre(),dtPerro.getgenero(),dtPerro.getPeso(),dtPerro.getRazaPerro(),dtPerro.getVacunaCachorro());
-				//cout << "-------------------------- agrego perro en registrar socio " << mascota->getNombre()  <<"\n";	
+				DtDebito dtDebito = dynamic_cast<const DtDebito&>(dtReserva);
+				idReserva++;
+				nuevaReserva = new Debito(idReserva, 100, dtDebito.getCantEntradas(), ccf->getFuncionSeleccionada(), cu->getUsuarioLogueado(), dtDebito.getBanco());
 		  	}catch(std::bad_cast){
-	        	cout << "Error al registrar socio.\n";
-	      }
+	        	cout << "Error al crear reserva.\n";
+	    }
 	}
-	*/
+	
 }
 
 void ControladorReserva::cancelarReserva(){
@@ -44,7 +44,12 @@ void ControladorReserva::cancelarReserva(){
 }
 
 float ControladorReserva::mostrarCosto(){
-	return 1;
+	return nuevaReserva->obtenerPrecioTotal();
+}
+
+
+void ControladorReserva::confirmarReserva(){
+	listaReserva->push_back(nuevaReserva);
 }
 
 ControladorReserva::~ControladorReserva(){}

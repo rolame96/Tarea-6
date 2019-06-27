@@ -3,7 +3,13 @@
 #include <list>
 #include "Reserva.h"
 #include "DtReserva.h"
+#include "DtCredito.h"
+#include "DtDebito.h"
+#include "Credito.h"
+#include "Debito.h"
 #include "IControladorReserva.h"
+#include "ControladorCineFuncion.h"
+#include "ControladorUsuario.h"
 
 using namespace std;
 

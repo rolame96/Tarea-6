@@ -18,7 +18,7 @@ ControladorCineFuncion* ControladorCineFuncion::getInstancia(){
 }
 
 void ControladorCineFuncion::agregarCine(DtCine dtCine, list<DtSala> listaDtSala){
-	IControladorUsuario* c = ControladorUsuario::getInstancia();
+	ControladorUsuario* c = ControladorUsuario::getInstancia();
 	if(c->usuarioLogueadoEsAdmin()){
 		idCine++;
 		int idSala=0;
@@ -143,6 +143,10 @@ list<DtSala> ControladorCineFuncion::listarSala(DtCine dtCine){
 			return listaDtSala;
 		}
 	}
+}
+
+Funcion* ControladorCineFuncion::getFuncionSeleccionada(){
+	return funcionSeleccionada;
 }
 
 

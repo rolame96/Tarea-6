@@ -5,7 +5,7 @@
 using namespace std;
 
 
-class Credito: public Reserva{
+class Credito:public Reserva{
 	private:
 		float porcentajeDescuento;
 		string financiera;
