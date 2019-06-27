@@ -26,9 +26,9 @@ void ControladorReserva::crearReserva(DtReserva dtReserva){
 	try{
 		DtCredito dtCredito = dynamic_cast<const DtCredito&>(dtReserva);
 		idReserva++;
-		//int id, float costo,int cantEntradas, Funcion* funcion, Usuario* usuario
+		//parametro constructor de Reserva ---- int id, float costo,int cantEntradas, Funcion* funcion, Usuario* usuario
 		nuevaReserva = new Credito(dtCredito.getPorcentajeDescuento(),dtCredito.getFinanciera());
-		//revisar porque no anda todo junto en el contructor de Credito
+		//revisar porque no anda todo junto en el constructor de Credito
 		nuevaReserva->setId(idReserva);
 		nuevaReserva->setCosto(costoEntrada);
 		nuevaReserva->setCantEntradas(dtCredito.getCantEntradas());
