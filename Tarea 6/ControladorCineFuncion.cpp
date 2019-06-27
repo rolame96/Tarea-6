@@ -73,18 +73,53 @@ void ControladorCineFuncion::SeleccionarSala(DtSala dtSala){
 		
 }
 
-list<DtCine> ControladorCineFuncion::listarCinePeliculaSeleccionada(){
+list<DtFuncion> ControladorCineFuncion::listarFuncionCineSeleccionadoPeliculaSeleccionada(){
 	ControladorPelicula* c = ControladorPelicula::getInstancia();
+	list<DtFuncion> listaDtFuncion;
+	listaDtFuncion.clear();
 	for (std::list<Funcion*>::iterator it=listaFuncion.begin(); it != listaFuncion.end(); ++it){
 		Funcion* f = *it;
 		if(f->getPelicula()->getTitulo()==c->getpeliculaSeleccionada()->getTitulo()){
- 			funcionSeleccionada = f;
-			break;	    
- 		}
+			Sala* sala = f->getSala();
+			Cine* cine = sala->getCine();
+			if(cine->getId()==cineSeleccionado->getId()){
+				DtFecha dtfaux = DtFecha(26,6,2019);
+				if(dtfaux<=f->getFecha())
+					listaDtFuncion.push_back(DtFuncion(f->getId(),f->getFecha(),f->getHorario()));
+			}
+		}
 	}
-	
+	return listaDtFuncion;
 }
 
+list<DtCine> ControladorCineFuncion::listarCinePeliculaSeleccionada(){
+	ControladorPelicula* c = ControladorPelicula::getInstancia();
+	list<DtCine> listaDtCine;
+	listaDtCine.clear();
+	for (std::list<Funcion*>::iterator it=listaFuncion.begin(); it != listaFuncion.end(); ++it){
+		Funcion* f = *it;
+		if(f->getPelicula()->getTitulo()==c->getpeliculaSeleccionada()->getTitulo()){
+			Sala* sala = f->getSala();
+			Cine* cine = sala->getCine();		
+			if(yaEstaCineListaDtCine(cine,listaDtCine)==false)
+				listaDtCine.push_back(DtCine(cine->getId(),cine->getDireccion()));
+ 		}
+	}
+	return listaDtCine;
+}
+
+bool ControladorCineFuncion::yaEstaCineListaDtCine(Cine* cine, list<DtCine> listaDtCine){
+	bool yaEsta = false;
+	DtCine dc;
+	for (std::list<DtCine>::iterator it=listaDtCine.begin(); it != listaDtCine.end(); ++it){
+		dc = *it;
+		if(dc.getId()==cine->getId()){
+			yaEsta=true;
+			break;
+		}
+	}
+	return yaEsta;
+}
 list<DtCine> ControladorCineFuncion::listarCine(){
 	list<DtCine> listaDtCine;
 	for (std::list<Cine*>::iterator it=listaCine.begin(); it != listaCine.end(); ++it){
@@ -109,9 +144,5 @@ list<DtSala> ControladorCineFuncion::listarSala(DtCine dtCine){
 	}
 }
 
-list<DtFuncion> ControladorCineFuncion::listarFuncionCineSeleccionadoPeliculaSeleccionada(){
-	
-	
-}
 
 ControladorCineFuncion::~ControladorCineFuncion(){}

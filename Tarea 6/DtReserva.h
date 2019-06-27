@@ -12,7 +12,6 @@ protected :
 	int id;
 	float costo;
 	int cantEntradas;
-	float precioTotal;
 public :
 	DtReserva();
 	DtReserva(int, float , int);

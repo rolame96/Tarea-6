@@ -19,7 +19,7 @@ int DtDireccion::getNumero(){
 }
 
 ostream& operator <<(ostream& salida, const DtDireccion& dtDireccion) {
-	cout << dtDireccion.calle << " - " << dtDireccion.numero << "\n";
+	cout << dtDireccion.calle << " " << dtDireccion.numero << "\n";
 	return salida;
 }
 

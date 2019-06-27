@@ -15,6 +15,11 @@ IControladorUsuario* Fabrica::getIControladorUsuario(){
 	return c;
 }
 
+IControladorReserva* Fabrica::getIControladorReserva(){
+	IControladorReserva* c = ControladorReserva::getInstancia();
+	return c;
+}
+
 IControladorCineFuncion* Fabrica::getIControladorCineFuncion(){
 	IControladorCineFuncion* c = ControladorCineFuncion::getInstancia();
 	return c;

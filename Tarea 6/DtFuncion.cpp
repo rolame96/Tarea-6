@@ -25,7 +25,7 @@ DtHorario DtFuncion::getHorario(){
 }
 
 ostream& operator <<(ostream& salida, const DtFuncion& dtFuncion) {
-	cout << dtFuncion.fecha << " : " << dtFuncion.horario << "\n";
+	cout << dtFuncion.id << " - " << dtFuncion.fecha << " " << dtFuncion.horario;
 	return salida;
 }
 

@@ -6,7 +6,8 @@
 #include "IControladorCineFuncion.h"
 #include "IControladorPelicula.h"
 #include "ControladorPelicula.h"
-
+#include "ControladorReserva.h"
+#include "IControladorReserva.h"
 
 class Fabrica{
 	private:
@@ -15,6 +16,7 @@ class Fabrica{
 	public:
 		static Fabrica* getInstancia();
 		IControladorUsuario* getIControladorUsuario();
+		IControladorReserva* getIControladorReserva();
 		IControladorCineFuncion* getIControladorCineFuncion();
 		IControladorPelicula* getIControladorPelicula();
 		~Fabrica();

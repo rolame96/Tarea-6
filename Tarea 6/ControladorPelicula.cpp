@@ -60,6 +60,11 @@ void ControladorPelicula::agregarPuntaje(DtPuntaje dtPuntaje){
 	}
 }
 
+DtPelicula ControladorPelicula::getDatosPeliculaSeleccionada(){
+	DtPelicula dp = peliculaSeleccionada->getDatosPelicula();
+	return dp;
+}
+
 bool ControladorPelicula::usuarioPuntuoPelicula(){
 	ControladorUsuario* cu = ControladorUsuario::getInstancia();	
 	bool yaPuntuo=false;

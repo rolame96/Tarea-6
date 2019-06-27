@@ -29,6 +29,7 @@ class  ControladorCineFuncion: public IControladorCineFuncion{
 		void SeleccionarFuncion(DtFuncion);
 		void SeleccionarCine(DtCine);
 	 	void SeleccionarSala(DtSala);
+	 	bool yaEstaCineListaDtCine(Cine*,list<DtCine>);
 	 	list<DtCine> listarCinePeliculaSeleccionada();
 		list<DtCine> listarCine();
 		list<DtSala> listarSala(DtCine);

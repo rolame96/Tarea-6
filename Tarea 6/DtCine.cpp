@@ -26,7 +26,7 @@ DtDireccion DtCine::getDireccion(){
 }
 
 ostream& operator <<(ostream& salida, const DtCine& dtCine) {
-	cout << dtCine.id << " - " << dtCine.direccion << "\n";
+	cout << dtCine.id << " - " << dtCine.direccion;
 	return salida;
 }
 

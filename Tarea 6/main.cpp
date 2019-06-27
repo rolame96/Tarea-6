@@ -6,12 +6,38 @@
 #include "IControladorCineFuncion.h"
 #include "IControladorReserva.h"
 #include <list>
-
+#include <map>
+#include "DtReserva.h"
+#include "DtCredito.h"
+#include "DtDebito.h"
 
 using namespace std;
-
+map<string, float> financieras;
 list<DtSala> listaDtSalas;
 
+void agregarFuncion(){
+	Fabrica* f = Fabrica::getInstancia();
+	IControladorPelicula* contPelicula = f->getIControladorPelicula();
+	IControladorCineFuncion* contCineFuncion= f->getIControladorCineFuncion();
+	contPelicula->seleccionarPelicula(DtPelicula("Esjubi du","sinosis Esjubi du","www.BosterEsjubi.jpg",0));
+	contCineFuncion->SeleccionarCine(DtCine(1,DtDireccion("calle1",1111)));
+	contCineFuncion->SeleccionarSala(DtSala(1,10));
+	DtHorario dtHorario = DtHorario(11,10);
+	DtFecha dtFecha = DtFecha(6,6,2018);
+	contCineFuncion->agregarFuncion(DtFuncion(0,dtFecha,dtHorario));
+	///segunda funcion
+	//contPelicula->seleccionarPelicula(DtPelicula("Madris","sinosis Madris","www.BosterMadris.jpg",0));
+	contCineFuncion->SeleccionarCine(DtCine(2,DtDireccion()));
+	contCineFuncion->SeleccionarSala(DtSala(2,0));
+	dtHorario = DtHorario(8,30);
+	dtFecha = DtFecha(26,8,2019);
+	contCineFuncion->agregarFuncion(DtFuncion(0,dtFecha,dtHorario));
+}
+void agregarFinanciera(){
+	financieras["Pronto"] = 10;
+	financieras["Fucac"]  = 5;
+	financieras["MegaFinanzas"]  = 0;
+}
 
 void agregarUsuario(){
 	Fabrica* f = Fabrica::getInstancia();
@@ -44,11 +70,12 @@ void agregarCine(){
 	contCineFuncion->agregarCine(DtCine(0,DtDireccion("calle2",1122)),ls);	
 }
 int main() {	
+	agregarFinanciera();
 	agregarUsuario();
 	bool sesionOK = Fabrica::getInstancia()->getIControladorUsuario()->iniciarSesion("admin", "admin");
 	agregarPelicula();
 	agregarCine();
-	
+	agregarFuncion();
 	
 	cout << "Bienvenido. Elija la opcion" << endl; 
 	while(true)
@@ -193,8 +220,99 @@ int main() {
 				
 				
 		}else if (comando == 4){//Crear Reserva
-
-			
+			Fabrica* f = Fabrica::getInstancia();
+			IControladorPelicula* contPelicula = f->getIControladorPelicula();
+			IControladorCineFuncion* contCineFuncion = f->getIControladorCineFuncion();
+			IControladorReserva* contReserva = f->getIControladorReserva();
+			int peliculaSeleccionada=0, cont=0, aux=0, puntaje=0;
+			while(true){
+				cout << "Seleccione pelicula o salir = 0" << endl; 
+				DtPelicula p;
+				list<DtPelicula> lp = contPelicula->listarPelicula();
+				for (std::list<DtPelicula>::iterator it=lp.begin(); it != lp.end(); ++it){
+					cont++;
+					p = *it;
+					cout << cont << " - "<< p.getTitulo() << endl; 					
+				}
+				cin >> peliculaSeleccionada;
+				if(peliculaSeleccionada!=0){
+					cont = 0;
+					for (std::list<DtPelicula>::iterator it=lp.begin(); it != lp.end(); ++it){
+						cont++;
+						if (cont == peliculaSeleccionada ){					
+							p = *it;					
+							break;	
+						}
+					}
+					contPelicula->seleccionarPelicula(p);
+					DtPelicula dp = contPelicula->getDatosPeliculaSeleccionada();
+					cout << "Poster: "<<dp.getPoster() <<endl;
+					cout << "Sinopsis: "<<dp.getSinopsis() <<endl;
+					cout << "Ver información adicional = 1, Cancelar = 0" << endl; 
+					cin >> aux;
+					if(aux == 1){
+						list<DtCine> listaDtCine = contCineFuncion->listarCinePeliculaSeleccionada();
+						DtCine dc;
+						for (std::list<DtCine>::iterator it=listaDtCine.begin(); it != listaDtCine.end(); ++it){
+							dc = *it;
+							cout << dc; 	
+						}
+						aux=0;
+						cout << "Seleccionar Cine o Cancelar = 0" << endl;
+						cin >> aux; 
+						if(aux != 0){
+							contCineFuncion->SeleccionarCine(DtCine(aux,DtDireccion()));
+							list<DtFuncion> listaDtFuncion = contCineFuncion->listarFuncionCineSeleccionadoPeliculaSeleccionada();
+							aux=0;
+							cout << "Seleccione funcion o elija otra pelicula = 0"<<endl;
+							DtFuncion df;
+							for (std::list<DtFuncion>::iterator it=listaDtFuncion.begin(); it != listaDtFuncion.end(); ++it){
+								df = *it;
+								cout << df << endl; 					
+							}
+							cin >> aux;
+							if(aux!=0){
+								int cantAsientos;
+								contCineFuncion->SeleccionarFuncion(DtFuncion(aux,DtFecha(),DtHorario()));
+								cout << "Ingrese cantidad de asientos: "<<endl;							
+								cin >> cantAsientos;
+								aux=0;
+								cout << "Ingrese modo de pago, credito = 1, debito = 2"<<endl;
+								cin >> aux;
+								if(aux==1){
+									string financiera;
+									cout << "Ingrese financiera: "<<endl;
+									map<string,float>::iterator it;
+									for (it= financieras.begin(); it!=financieras.end(); ++it){
+									  string clave = it->first;
+									  float  valor = it->second;
+									  cout << clave << " - Descuento: " << valor << "%" <<endl;
+									}
+									cin >> financiera;
+									DtCredito dtr = DtCredito(financieras[financiera],financiera,0);
+									contReserva->crearReserva(dtr);
+								}else{
+									string banco;
+									cout << "Ingrese banco: "<<endl;
+									cin >> banco;
+									DtDebito dtd = DtDebito(banco,0);
+									contReserva->crearReserva(dtd);
+								}
+								cout << "Costo de la reserva: "<< contReserva->mostrarCosto();
+								aux=0;
+								cout << "Confirmar = 1, Cancelar = 2"<<endl;
+								cin >> aux;
+								if(aux==1){
+									contReserva->confirmarReserva();
+									cout << "Reserva Ingresada "<<endl;
+								}
+								break;
+							}
+						}else
+							break;
+					}
+				}
+			}
 		}else if (comando == 5){//Puntuar Película
 			Fabrica* f = Fabrica::getInstancia();
 			IControladorPelicula* contPelicula = f->getIControladorPelicula();
@@ -225,8 +343,7 @@ int main() {
 					cout << "Ingrese puntaje: " << endl; 
 					cin >> puntaje;
 					contPelicula->agregarPuntaje(DtPuntaje(puntaje));
-				}else
-					break;
+				}
 			}else{
 				cout << "Ingrese puntaje: " << endl; 
 				cin >> puntaje;
