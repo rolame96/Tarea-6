@@ -10,6 +10,8 @@
 #include "IControladorReserva.h"
 #include "ControladorCineFuncion.h"
 #include "ControladorUsuario.h"
+#include <stdexcept>
+#include <typeinfo>
 
 using namespace std;
 
@@ -25,7 +27,7 @@ class  ControladorReserva: public IControladorReserva{
 		void confirmarReserva();
 		void crearReserva(DtReserva);
 		void cancelarReserva();
-		float mostrarCosto();
+		float mostrarCostoNuevaReserva();
 		~ControladorReserva();
 };
 

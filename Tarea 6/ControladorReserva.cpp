@@ -21,17 +21,29 @@ void ControladorReserva::confirmarReserva(){
 void ControladorReserva::crearReserva(DtReserva dtReserva){
 	
 	ControladorUsuario* cu = ControladorUsuario::getInstancia();
-	ControladorCineFuncion* ccf = ControladorCineFuncion::getInstancia();	
+	ControladorCineFuncion* ccf = ControladorCineFuncion::getInstancia();
+	float costoEntrada = 100;
 	try{
 		DtCredito dtCredito = dynamic_cast<const DtCredito&>(dtReserva);
 		idReserva++;
 		//int id, float costo,int cantEntradas, Funcion* funcion, Usuario* usuario
-		nuevaReserva = new Credito(idReserva, 100, dtCredito.getCantEntradas(), ccf->getFuncionSeleccionada(), cu->getUsuarioLogueado(), dtCredito.getPorcentajeDescuento(), dtCredito.getFinanciera());											
+		nuevaReserva = new Credito(dtCredito.getPorcentajeDescuento(),dtCredito.getFinanciera());
+		//revisar porque no anda todo junto en el contructor de Credito
+		nuevaReserva->setId(idReserva);
+		nuevaReserva->setCosto(costoEntrada);
+		nuevaReserva->setCantEntradas(dtCredito.getCantEntradas());
+		nuevaReserva->setFuncion(ccf->getFuncionSeleccionada());
+		nuevaReserva->setUsuario(cu->getUsuarioLogueado());									
 		}catch(std::bad_cast){
 			try{
 				DtDebito dtDebito = dynamic_cast<const DtDebito&>(dtReserva);
 				idReserva++;
-				nuevaReserva = new Debito(idReserva, 100, dtDebito.getCantEntradas(), ccf->getFuncionSeleccionada(), cu->getUsuarioLogueado(), dtDebito.getBanco());
+				nuevaReserva = new Debito(dtDebito.getBanco());
+				nuevaReserva->setId(idReserva);
+				nuevaReserva->setCosto(costoEntrada);
+				nuevaReserva->setCantEntradas(dtDebito.getCantEntradas());
+				nuevaReserva->setFuncion(ccf->getFuncionSeleccionada());
+				nuevaReserva->setUsuario(cu->getUsuarioLogueado());				
 		  	}catch(std::bad_cast){
 	        	cout << "Error al crear reserva.\n";
 	    }
@@ -43,13 +55,8 @@ void ControladorReserva::cancelarReserva(){
 	delete this->nuevaReserva;
 }
 
-float ControladorReserva::mostrarCosto(){
+float ControladorReserva::mostrarCostoNuevaReserva(){
 	return nuevaReserva->obtenerPrecioTotal();
-}
-
-
-void ControladorReserva::confirmarReserva(){
-	listaReserva->push_back(nuevaReserva);
 }
 
 ControladorReserva::~ControladorReserva(){}

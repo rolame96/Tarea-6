@@ -337,7 +337,7 @@ int main() {
 									DtDebito dtd = DtDebito(banco,0);
 									contReserva->crearReserva(dtd);
 								}
-								cout << "Costo de la reserva: "<< contReserva->mostrarCosto() << endl;
+								cout << "Costo de la reserva: "<< contReserva->mostrarCostoNuevaReserva() << endl;
 								aux=0;
 								cout << "Confirmar = 1, Cancelar = 2"<<endl;
 								cin >> aux;

@@ -11,7 +11,7 @@ class IControladorReserva{
 		virtual void confirmarReserva()=0;
 		virtual void crearReserva(DtReserva)=0;
 		virtual void cancelarReserva()=0;
-		virtual float mostrarCosto()=0;
+		virtual float mostrarCostoNuevaReserva()=0;
 		virtual ~IControladorReserva(){};
 };
 

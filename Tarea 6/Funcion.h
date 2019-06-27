@@ -8,7 +8,6 @@
 
 using namespace std;
 
-//class DtCine;
 class Sala;
 
 class Funcion{
