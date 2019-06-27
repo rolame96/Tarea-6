@@ -37,6 +37,10 @@ bool ControladorUsuario::iniciarSesion(string nickname, string password){
 	return false;
 }
 
+void ControladorUsuario::cerrarSesion(){
+	usuarioLogueado = NULL;
+}
+
 bool ControladorUsuario::usuarioLogueadoEsAdmin(){
 	if(usuarioLogueado==NULL)
 		return false;

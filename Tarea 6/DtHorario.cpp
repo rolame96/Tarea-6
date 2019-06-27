@@ -19,7 +19,7 @@ int DtHorario::getMinutos(){
 }
 
 ostream& operator <<(ostream& salida, const DtHorario& dtHorario) {
-	cout << dtHorario.hora << " : " << dtHorario.minutos << "\n";
+	cout << dtHorario.hora << ":" << dtHorario.minutos;
 	return salida;
 }
 

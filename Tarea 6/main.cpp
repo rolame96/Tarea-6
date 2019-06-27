@@ -19,64 +19,104 @@ void agregarFuncion(){
 	Fabrica* f = Fabrica::getInstancia();
 	IControladorPelicula* contPelicula = f->getIControladorPelicula();
 	IControladorCineFuncion* contCineFuncion= f->getIControladorCineFuncion();
-	contPelicula->seleccionarPelicula(DtPelicula("Esjubi du","sinosis Esjubi du","www.BosterEsjubi.jpg",0));
-	contCineFuncion->SeleccionarCine(DtCine(1,DtDireccion("calle1",1111)));
-	contCineFuncion->SeleccionarSala(DtSala(1,10));
+	//Selecciona pelicula 1
+	contPelicula->seleccionarPelicula(DtPelicula("Esgubidu","","",0));
+	//Selecciona cine 1
+	contCineFuncion->SeleccionarCine(DtCine(1,DtDireccion()));
+	//Selecciona sala 1 del cine 1
+	contCineFuncion->SeleccionarSala(DtSala(1,0));
 	DtHorario dtHorario = DtHorario(11,10);
 	DtFecha dtFecha = DtFecha(6,6,2018);
+	//Agrega funcion vieja para pelicula 1 cine 1 sala 1
 	contCineFuncion->agregarFuncion(DtFuncion(0,dtFecha,dtHorario));
-	///segunda funcion
-	//contPelicula->seleccionarPelicula(DtPelicula("Madris","sinosis Madris","www.BosterMadris.jpg",0));
+	//Selecciona cine 2
 	contCineFuncion->SeleccionarCine(DtCine(2,DtDireccion()));
-	contCineFuncion->SeleccionarSala(DtSala(2,0));
+	//Selecciona sala 1 del cine 2 
+	contCineFuncion->SeleccionarSala(DtSala(1,0));
 	dtHorario = DtHorario(8,30);
 	dtFecha = DtFecha(26,8,2019);
+	//Agrega funcion  para pelicula 1 cine 2 sala 1
+	contCineFuncion->agregarFuncion(DtFuncion(0,dtFecha,dtHorario));	
+	//Selecciona sala 2 del cine 2 
+	contCineFuncion->SeleccionarSala(DtSala(2,0));
+	dtHorario = DtHorario(9,30);
+	dtFecha = DtFecha(25,8,2019);
+	//Agrega funcion para Pelicula 1 Cine 2 Sala 2
 	contCineFuncion->agregarFuncion(DtFuncion(0,dtFecha,dtHorario));
+	//Selecciona pelicula 3
+	contPelicula->seleccionarPelicula(DtPelicula("Dragonbolseta","","",0));
+	//Selecciona cine 1
+	contCineFuncion->SeleccionarCine(DtCine(1,DtDireccion()));
+	//Selecciona sala 2 del cine 1
+	contCineFuncion->SeleccionarSala(DtSala(2,0));
+	dtHorario = DtHorario(14,15);
+	dtFecha = DtFecha(29,7,2019);
+	//Agrega funcion  para pelicula 3 cine 1 sala 2
+	contCineFuncion->agregarFuncion(DtFuncion(0,dtFecha,dtHorario));			
 }
+
 void agregarFinanciera(){
-	financieras["Pronto"] = 10;
-	financieras["Fucac"]  = 5;
-	financieras["MegaFinanzas"]  = 0;
+	financieras["Bronto"] = 20;
+	financieras["Futac"]  = 10;
+	financieras["Credibel"]  = 5;
+	financieras["MegaFinanzas"]  = 0;	
 }
 
 void agregarUsuario(){
 	Fabrica* f = Fabrica::getInstancia();
 	IControladorUsuario* contUsuario= f->getIControladorUsuario();
-	contUsuario->agregarUsuario("user", "user", "www.google.com/1", false);
-	contUsuario->agregarUsuario("ezequiel", "4525255", "www.google.com/2", false);
-	contUsuario->agregarUsuario("rodrigo", "4672749", "www.google.com/3", false);
-	contUsuario->agregarUsuario("enzo", "4330024", "www.google.com/4", false);
-	contUsuario->agregarUsuario("federico", "12345", "www.google.com/5", false);
-	contUsuario->agregarUsuario("admin", "admin", "www.google.com/6", true);
+	contUsuario->agregarUsuario("user", "user", "www.foto.com/user", false);
+	contUsuario->agregarUsuario("eecheverri", "4525255", "www.foto.com/eecheverri", false);
+	contUsuario->agregarUsuario("rlame", "4672749", "www.foto.com/rlame", false);
+	contUsuario->agregarUsuario("ealberdi", "4330024", "www.foto.com/ealberdi", false);
+	contUsuario->agregarUsuario("admin", "admin", "www.foto.com/6", true);
 }
+
 void agregarPelicula(){
 	Fabrica* f = Fabrica::getInstancia();
 	IControladorPelicula* contPelicula= f->getIControladorPelicula();
-	contPelicula->agregarPelicula(DtPelicula("Esjubi du","sinosis Esjubi du","www.BosterEsjubi.jpg",0));
-	contPelicula->agregarPelicula(DtPelicula("Madris","sinosis Madris","www.BosterMadris.jpg",0));
-	contPelicula->agregarPelicula(DtPelicula("dragonbol seta","sinosisMadris dragonbol seta","www.dragonbol.jpg",0));
+	contPelicula->agregarPelicula(DtPelicula("Esgubidu","sinosis Esjubi du","www.bosteresjubi.jpg",0));
+	contPelicula->agregarPelicula(DtPelicula("Madris","sinosis de Madris","www.bostermadris.jpg",0));
+	contPelicula->agregarPelicula(DtPelicula("Dragonbolseta","sinosis  de dragonbol seta","www.dragonbolseta.jpg",0));
+	contPelicula->agregarPelicula(DtPelicula("Boguemon","sinosis  de Boguemon","www.boguemon.jpg",0));
+	contPelicula->agregarPelicula(DtPelicula("JarryBoter","sinosisMadris JarryBoter","www.jarryboter.jpg",0));
 }
 
-void agregarCine(){
-	
+void agregarCine(){	
 	Fabrica* f = Fabrica::getInstancia();
 	IControladorCineFuncion* contCineFuncion= f->getIControladorCineFuncion();
 	list<DtSala> ls;
 	ls.push_back(DtSala(0,10));	
-	ls.push_back(DtSala(0,537));	
-	contCineFuncion->agregarCine(DtCine(0,DtDireccion("calle1",1111)),ls);	
-	ls.push_back(DtSala(0,50));	
-	ls.push_back(DtSala(0,5327));	
-	contCineFuncion->agregarCine(DtCine(0,DtDireccion("calle2",1122)),ls);	
+	ls.push_back(DtSala(0,11));	
+	// Cine 1 con salas 1 y 2;
+	contCineFuncion->agregarCine(DtCine(0,DtDireccion("calle 1",1111)),ls);
+	ls.clear();
+	ls.push_back(DtSala(0,20));	
+	ls.push_back(DtSala(0,21));
+	ls.push_back(DtSala(0,22));
+	ls.push_back(DtSala(0,23));	
+	// Cine 1 con salas 1,2,3 y 4;
+	contCineFuncion->agregarCine(DtCine(0,DtDireccion("calle 2",2222)),ls);
+	ls.clear();
+	ls.push_back(DtSala(0,30));	
+	ls.push_back(DtSala(0,31));
+	ls.push_back(DtSala(0,32));
+	ls.push_back(DtSala(0,33));
+	ls.push_back(DtSala(0,34));		
+	// Cine 1 con salas 1,2,3,4 y 5;
+	contCineFuncion->agregarCine(DtCine(0,DtDireccion("calle 3",3333)),ls);		
 }
-int main() {	
+
+int main() {
+	/*
 	agregarFinanciera();
 	agregarUsuario();
 	bool sesionOK = Fabrica::getInstancia()->getIControladorUsuario()->iniciarSesion("admin", "admin");
 	agregarPelicula();
 	agregarCine();
-	agregarFuncion();
-	
+	agregarFuncion();	
+	//Fabrica::getInstancia()->getIControladorUsuario()->cerrarSesion();		
+	*/
 	cout << "Bienvenido. Elija la opcion" << endl; 
 	while(true)
 	{		
@@ -215,9 +255,7 @@ int main() {
 				
 				
 			}else
-				cout << "No es admin " << endl; 
-
-				
+				cout << "No es admin " << endl;				
 				
 		}else if (comando == 4){//Crear Reserva
 			Fabrica* f = Fabrica::getInstancia();
@@ -229,6 +267,7 @@ int main() {
 				cout << "Seleccione pelicula o salir = 0" << endl; 
 				DtPelicula p;
 				list<DtPelicula> lp = contPelicula->listarPelicula();
+				cont = 0;
 				for (std::list<DtPelicula>::iterator it=lp.begin(); it != lp.end(); ++it){
 					cont++;
 					p = *it;
@@ -298,7 +337,7 @@ int main() {
 									DtDebito dtd = DtDebito(banco,0);
 									contReserva->crearReserva(dtd);
 								}
-								cout << "Costo de la reserva: "<< contReserva->mostrarCosto();
+								cout << "Costo de la reserva: "<< contReserva->mostrarCosto() << endl;
 								aux=0;
 								cout << "Confirmar = 1, Cancelar = 2"<<endl;
 								cin >> aux;
@@ -310,9 +349,11 @@ int main() {
 							}
 						}else
 							break;
-					}
+					}else
+						break;
 				}
 			}
+			
 		}else if (comando == 5){//Puntuar Película
 			Fabrica* f = Fabrica::getInstancia();
 			IControladorPelicula* contPelicula = f->getIControladorPelicula();
@@ -350,6 +391,7 @@ int main() {
 				contPelicula->agregarPuntaje(puntaje);
 			}
 			cout << "Puntaje ingresado." << endl;
+			
 		}else if (comando == 6){//Comentar Película
 		
 		
@@ -363,11 +405,18 @@ int main() {
 		
 		
 		}else if (comando == 10){//Cargar datos
-			
-								
-		}else if (comando ==0 )
 		
-		
+			agregarFinanciera();
+			agregarUsuario();
+			Fabrica* f = Fabrica::getInstancia();
+			IControladorUsuario* contUsuario= f->getIControladorUsuario();
+			bool sesionOK = contUsuario->iniciarSesion("admin", "admin");
+			agregarPelicula();
+			agregarCine();
+			agregarFuncion();	
+			contUsuario->cerrarSesion();
+							
+		}else if (comando ==0 )		
 		
 			return(0);
 					

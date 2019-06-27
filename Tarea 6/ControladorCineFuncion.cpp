@@ -63,7 +63,8 @@ void ControladorCineFuncion::SeleccionarCine(DtCine dtCine){
 }
 
 void ControladorCineFuncion::SeleccionarSala(DtSala dtSala){
-	for (std::list<Sala*>::iterator it=cineSeleccionado->getlistaSala().begin(); it != cineSeleccionado->getlistaSala().end(); ++it){
+	list<Sala*> ls = cineSeleccionado->getlistaSala();
+	for (std::list<Sala*>::iterator it=ls.begin(); it != ls.end(); ++it){
 		Sala* s = *it;
 		if(s->getId()==dtSala.getId()){
 			salaSeleccionada = s;

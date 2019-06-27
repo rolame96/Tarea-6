@@ -18,6 +18,7 @@ class  ControladorUsuario: public IControladorUsuario{
 		void agregarUsuario(string, string, string, bool);
 		Usuario* getUsuarioLogueado();
 		bool iniciarSesion(string, string);
+		void cerrarSesion();
 		bool usuarioLogueadoEsAdmin();		
 		~ControladorUsuario();
 };
