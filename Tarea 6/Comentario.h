@@ -11,7 +11,7 @@ class Comentario{
 	private:
 		string texto;
 		Usuario* usuario;
-		list<Comentario*>listaComentarios; 
+		list<Comentario*>listaRespuesta; 
 	public:
 		Comentario();
 		Comentario(string, Usuario*);
@@ -19,7 +19,7 @@ class Comentario{
 		void setTexto(string);
 		Usuario* getUsuario();
 		void setUsuario(Usuario*);
-		void agregarComentario(Comentario*);
+		void agregarRespuesta(Comentario*);
 		~Comentario();
 };
 

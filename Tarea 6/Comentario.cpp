@@ -26,8 +26,8 @@ void Comentario::setUsuario(Usuario* usuario){
 	this->usuario=usuario;
 }
 
-void Comentario::agregarComentario(Comentario* comentario){
-	this->listaComentarios.push_back(comentario);
+void Comentario::agregarRespuesta(Comentario* comentario){
+	this->listaRespuesta.push_back(comentario);
 }
 
 Comentario::~Comentario(){}

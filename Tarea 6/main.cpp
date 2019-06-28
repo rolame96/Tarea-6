@@ -129,7 +129,7 @@ int main() {
 		cout << "7) Eliminar Película  " << endl; 
 		cout << "8) Ver Información de Película  " << endl; 
 		cout << "9) Ver Comentarios y Puntajes de Película  " << endl; 
-	    cout << "10) Cargar datos " << endl; 
+	    cout << "10) Cargar datos de prueba" << endl; 
 	    cout << "11) Ingrese fecha al sistema " << endl; 
 	    cout << "12) Consulta fecha del sistema " << endl; 
 		int comando;
@@ -146,9 +146,9 @@ int main() {
 			IControladorUsuario* contUsuario= f->getIControladorUsuario();
 			sesionOK = contUsuario->iniciarSesion(nickname, password);
 			if (sesionOK)			
-				cout << "ok" << endl;
+				cout << "Iniciar Sesión OK" << endl;
 			else	
-				cout << "No ok"<< endl; 
+				cout << "Iniciar No OK"<< endl;
 				
 		}else if (comando == 2){ //Alta Cine
 			Fabrica* f = Fabrica::getInstancia();
@@ -210,7 +210,7 @@ int main() {
 				list<DtCine> lc = contCineFuncion->listarCine();
 				for (std::list<DtCine>::iterator it=lc.begin(); it != lc.end(); ++it){
 					c = *it;
-					cout << c.getId() << endl; 					
+					cout << "Id Cine: "<< c.getId() << " Direccion: " << c.getDireccion(); 					
 				}
 				cin >> cineSeleccionado;
 				for (std::list<DtCine>::iterator it=lc.begin(); it != lc.end(); ++it){
@@ -227,7 +227,7 @@ int main() {
 				list<DtSala> ls = contCineFuncion->listarSala(c);							
 				for (std::list<DtSala>::iterator it=ls.begin(); it != ls.end(); ++it){
 					s = *it;
-					cout << s.getId() << endl; 					
+					cout << "Id Sala: "<<s.getId() << " Capacidad: " <<s.getCapacidad() << endl; 					
 				}
 				cin >> salaSeleccionada;
 				for (std::list<DtSala>::iterator it=ls.begin(); it != ls.end(); ++it){
@@ -346,8 +346,7 @@ int main() {
 								cout << "Confirmar = 1, Cancelar = 2"<<endl;
 								cin >> aux;
 								if(aux==1){
-									contReserva->confirmarReserva();
-									cout << "Reserva Ingresada "<<endl;
+									contReserva->confirmarReserva();									
 								}
 								break;
 							}
@@ -359,6 +358,7 @@ int main() {
 			}
 			
 		}else if (comando == 5){//Puntuar Película
+		
 			Fabrica* f = Fabrica::getInstancia();
 			IControladorPelicula* contPelicula = f->getIControladorPelicula();
 			int peliculaSeleccionada=0, cont=0, aux=0, puntaje=0;
@@ -398,8 +398,10 @@ int main() {
 			
 		}else if (comando == 6){//Comentar Película
 		
-		
-		}else if (comando == 7){//Eliminar Película		
+			cout << "Funcion no implementada todavia x_x." << endl;
+			
+		}else if (comando == 7){//Eliminar Película
+			
 			Fabrica* f = Fabrica::getInstancia();
 			IControladorUsuario* contUsuario = f->getIControladorUsuario();
 			IControladorPelicula* contPelicula = f->getIControladorPelicula();
@@ -427,13 +429,12 @@ int main() {
 				cin>>aux;
 				if(aux==1){
 					contPelicula->eliminarPeliculaSeleccionada();
-					cout << "Pelicula eliminada";
-				}		
-			
+				}			
 			}else
 				cout << "No es admin"<<endl;
 		
-		}else if (comando == 8){//Ver Información de Película				
+		}else if (comando == 8){//Ver Información de Película
+						
 			Fabrica* f = Fabrica::getInstancia();
 			IControladorPelicula* contPelicula = f->getIControladorPelicula();
 			IControladorCineFuncion* contCineFuncion = f->getIControladorCineFuncion();
@@ -496,10 +497,12 @@ int main() {
 				}else
 					break;	
 			}
+			
 		}else if (comando == 9){//Ver Comentarios y Puntajes de Películas
 		
+			cout << "Funcion no implementada todavia x_x." << endl;
 		
-		}else if (comando == 10){//Cargar datos
+		}else if (comando == 10){//Cargar datosde prueba
 		
 			agregarFinanciera();
 			setFechayHora();
@@ -513,6 +516,7 @@ int main() {
 			contUsuario->cerrarSesion();
 							
 		}else if (comando == 11){//Ingresa fecha del sistema
+		
 			Fabrica* f = Fabrica::getInstancia();
 			IControladorReloj* reloj= f->getIControladorReloj();
 			int dia,mes, anio,hora,minutos;
@@ -531,10 +535,13 @@ int main() {
 			cin >> minutos;
 			DtHorario dtHorario = DtHorario(hora,minutos);
 			reloj->modificarFecha(dtFecha,dtHorario);
+			
 		}else if (comando == 12){//Consulta fecha del sistema
+		
 			Fabrica* f = Fabrica::getInstancia();
 			IControladorReloj* reloj= f->getIControladorReloj();
 			reloj->imprimirFecha();
+			
 		}else if (comando ==0 )		
 		
 			return(0);

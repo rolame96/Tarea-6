@@ -30,6 +30,7 @@ void ControladorCineFuncion::agregarCine(DtCine dtCine, list<DtSala> listaDtSala
 			nuevoCine->agregarSala(s);	
 		}
 		listaCine.push_back(nuevoCine);
+		cout << "Cine ingresado." << endl; 
 	}
 	else
 		cout << "No es admin" << endl; 
@@ -40,6 +41,7 @@ void ControladorCineFuncion::agregarFuncion(DtFuncion dtFuncion){
 	ControladorPelicula* c = ControladorPelicula::getInstancia();
 	Funcion* nuevaFuncion = new Funcion(idFuncion,dtFuncion.getFecha(),dtFuncion.getHorario(),salaSeleccionada,c->getpeliculaSeleccionada());	
 	listaFuncion.push_back(nuevaFuncion);
+	cout << "Funcion ingresada." << endl; 
 }
 
 void ControladorCineFuncion::SeleccionarFuncion(DtFuncion dtFuncion){

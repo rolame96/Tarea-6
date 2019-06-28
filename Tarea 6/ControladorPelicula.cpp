@@ -15,12 +15,18 @@ ControladorPelicula* ControladorPelicula::getInstancia(){
 }
 
 void ControladorPelicula::agregarPelicula(DtPelicula dtPelicula){
-	Pelicula* nuevaPelicula = new Pelicula(dtPelicula.getTitulo(), dtPelicula.getSinopsis(), dtPelicula.getPoster());
-	listaPeliculas.push_back(nuevaPelicula);
+	ControladorUsuario* cu = ControladorUsuario::getInstancia();
+	if(cu->getUsuarioLogueado()==NULL){
+		cout << "Debe iniciar sesion."<< endl;
+	}else{
+		Pelicula* nuevaPelicula = new Pelicula(dtPelicula.getTitulo(), dtPelicula.getSinopsis(), dtPelicula.getPoster());
+		listaPeliculas.push_back(nuevaPelicula);
+		cout << "Pelicula ingresada."<< endl;
+	}
 }
 
 void ControladorPelicula::eliminarPeliculaSeleccionada(){
-	
+	cout << "Implementar eliminarPeliculaSeleccionada."<< endl;
 }
 
 list<DtPelicula> ControladorPelicula::listarPelicula(){
@@ -48,20 +54,24 @@ DtPuntaje ControladorPelicula::mostrarPuntaje(){
 
 void ControladorPelicula::agregarPuntaje(DtPuntaje dtPuntaje){
 	ControladorUsuario* cu = ControladorUsuario::getInstancia();
-	Puntaje* p = NULL;
-	if(usuarioPuntuoPelicula()==true){
-		list<Puntaje*> lp = peliculaSeleccionada->getlistaPuntaje();
-		for (std::list<Puntaje*>::iterator it=lp.begin(); it != lp.end(); ++it){
-			p = *it;
-			if(cu->getUsuarioLogueado()->getNickname()==p->getUsuario()->getNickname()){
-				p->setPuntos(dtPuntaje.getPuntos());
-				break;
-			}		
-		}		
+	if(cu->getUsuarioLogueado()==NULL){
+		cout << "Debe iniciar sesion."<< endl; 
 	}else{
-		p = new Puntaje(dtPuntaje.getPuntos(), cu->getUsuarioLogueado());
-		peliculaSeleccionada->agregarPuntaje(p);
-	}
+		Puntaje* p = NULL;
+		if(usuarioPuntuoPelicula()==true){
+			list<Puntaje*> lp = peliculaSeleccionada->getlistaPuntaje();
+			for (std::list<Puntaje*>::iterator it=lp.begin(); it != lp.end(); ++it){
+				p = *it;
+				if(cu->getUsuarioLogueado()->getNickname()==p->getUsuario()->getNickname()){
+					p->setPuntos(dtPuntaje.getPuntos());
+					break;
+				}		
+			}		
+		}else{
+			p = new Puntaje(dtPuntaje.getPuntos(), cu->getUsuarioLogueado());
+			peliculaSeleccionada->agregarPuntaje(p);
+		}
+	}	
 }
 
 DtPelicula ControladorPelicula::getDatosPeliculaSeleccionada(){

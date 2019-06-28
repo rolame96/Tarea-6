@@ -16,6 +16,7 @@ ControladorReserva* ControladorReserva::getInstancia(){
 
 void ControladorReserva::confirmarReserva(){
 	listaReserva.push_back(this->nuevaReserva);
+	cout << "Reserva confirmada"<<endl;
 }
 
 void ControladorReserva::crearReserva(const DtReserva& dtReserva){
