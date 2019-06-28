@@ -14,6 +14,7 @@ class IControladorPelicula{
 		virtual DtPuntaje mostrarPuntaje()=0;
 		virtual DtPelicula getDatosPeliculaSeleccionada()=0;
 		virtual void agregarPuntaje(DtPuntaje)=0;
+		virtual void eliminarPeliculaSeleccionada()=0;
 		virtual void seleccionarPelicula(DtPelicula)=0;
 		virtual ~IControladorPelicula(){};
 };

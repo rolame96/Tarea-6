@@ -13,7 +13,7 @@ private :
 	float precioTotal;
 public :
 	DtDebito();
-	DtDebito(string,float);
+	DtDebito(int ,float ,int ,string,float);
 	string getBanco();
 	float obtenerPrecioTotal();
 	~DtDebito();

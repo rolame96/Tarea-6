@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=0000000000000000001000000
-UnitCount=57
+UnitCount=61
 
 [VersionInfo]
 Major=1
@@ -601,7 +601,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit58]
-FileName=DtPuntaje.h
+FileName=Reloj.h
 CompileCpp=1
 Folder=
 Compile=1
@@ -611,7 +611,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit59]
-FileName=DtPuntaje.cpp
+FileName=Reloj.cpp
 CompileCpp=1
 Folder=
 Compile=1
@@ -633,6 +633,25 @@ BuildCmd=
 [Unit48]
 FileName=ControladorReserva.cpp
 CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit60]
+FileName=IControladorReloj.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit61]
+FileName=Sin Nombre4
 Folder=
 Compile=1
 Link=1

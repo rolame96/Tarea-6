@@ -30,4 +30,9 @@ IControladorPelicula* Fabrica::getIControladorPelicula(){
 	return c;
 }
 
+IControladorReloj* Fabrica::getIControladorReloj(){
+	IControladorReloj* c = Reloj::getInstancia();
+	return c;
+}
+
 Fabrica::~Fabrica(){}

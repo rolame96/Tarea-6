@@ -6,7 +6,7 @@ DtCredito::DtCredito () {
 	this->precioTotal = 0;
 }
 
-DtCredito::DtCredito (float porcentajeDescuento,string financiera, float precioTotal) {
+DtCredito::DtCredito (int id,float costo,int cantEntradas,float porcentajeDescuento,string financiera, float precioTotal) : DtReserva(id,costo,cantEntradas){
 	this->porcentajeDescuento = porcentajeDescuento;
 	this->financiera = financiera;
 	this->precioTotal = 0;

@@ -5,7 +5,7 @@ DtDebito::DtDebito () {
 	this->precioTotal=0;
 }
 
-DtDebito::DtDebito (string banco,float precioTotal) {
+DtDebito::DtDebito (int id,float costo,int cantEntradas,string banco,float precioTotal) : DtReserva(id,costo,cantEntradas){
 	this->banco = banco;
 	this->precioTotal = precioTotal;
 }

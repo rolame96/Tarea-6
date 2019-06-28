@@ -12,7 +12,7 @@ class DtCredito: public DtReserva{
 		float precioTotal;
 	public:
 		DtCredito();
-		DtCredito(float, string, float);
+		DtCredito(int ,float ,int ,float, string, float);
 		float getPorcentajeDescuento();
 		string getFinanciera();
 		float obtenerPrecioTotal();

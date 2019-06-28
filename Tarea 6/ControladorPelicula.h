@@ -24,6 +24,7 @@ class  ControladorPelicula: public IControladorPelicula{
 		list<DtPelicula> listarPelicula();
 		DtPuntaje mostrarPuntaje();
 		void agregarPuntaje(DtPuntaje);
+		void eliminarPeliculaSeleccionada();
 		bool usuarioPuntuoPelicula();
 		DtPelicula getDatosPeliculaSeleccionada();
 		Pelicula* getpeliculaSeleccionada();

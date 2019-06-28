@@ -76,6 +76,7 @@ void ControladorCineFuncion::SeleccionarSala(DtSala dtSala){
 
 list<DtFuncion> ControladorCineFuncion::listarFuncionCineSeleccionadoPeliculaSeleccionada(){
 	ControladorPelicula* c = ControladorPelicula::getInstancia();
+	Reloj* r = Reloj::getInstancia();
 	list<DtFuncion> listaDtFuncion;
 	listaDtFuncion.clear();
 	for (std::list<Funcion*>::iterator it=listaFuncion.begin(); it != listaFuncion.end(); ++it){
@@ -84,7 +85,7 @@ list<DtFuncion> ControladorCineFuncion::listarFuncionCineSeleccionadoPeliculaSel
 			Sala* sala = f->getSala();
 			Cine* cine = sala->getCine();
 			if(cine->getId()==cineSeleccionado->getId()){
-				DtFecha dtfaux = DtFecha(26,6,2019);
+				DtFecha dtfaux = r->getFecha();
 				if(dtfaux<=f->getFecha())
 					listaDtFuncion.push_back(DtFuncion(f->getId(),f->getFecha(),f->getHorario()));
 			}

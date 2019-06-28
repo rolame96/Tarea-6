@@ -5,7 +5,7 @@ Credito::Credito () {
 	this->financiera=" ";
 }
 
-Credito::Credito (float porcentajeDescuento,string financiera) :Reserva(id, costo, cantEntradas, funcion, usuario) {
+Credito::Credito (int id,float costo,int cantEntradas,Funcion* funcion,Usuario* usuario,float porcentajeDescuento,string financiera) :Reserva(id, costo, cantEntradas, funcion, usuario) {
 	this->porcentajeDescuento = porcentajeDescuento;
 	this->financiera = financiera;
 }
@@ -27,7 +27,8 @@ void Credito::setFinanciera(string financiera){
 }
 
 float Credito::obtenerPrecioTotal(){	
-	return this->costo*this->cantEntradas *  ( 1 - this->porcentajeDescuento/100);
+	float resultado = this->costo*this->cantEntradas *  ( 1 - this->porcentajeDescuento/100);
+	return resultado;
 }
 
 Credito::~Credito(){}

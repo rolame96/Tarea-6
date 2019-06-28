@@ -8,6 +8,8 @@
 #include "ControladorPelicula.h"
 #include "ControladorReserva.h"
 #include "IControladorReserva.h"
+#include "IControladorReloj.h"
+#include "Reloj.h"
 
 class Fabrica{
 	private:
@@ -19,6 +21,7 @@ class Fabrica{
 		IControladorReserva* getIControladorReserva();
 		IControladorCineFuncion* getIControladorCineFuncion();
 		IControladorPelicula* getIControladorPelicula();
+		IControladorReloj* getIControladorReloj();
 		~Fabrica();
 };
 

@@ -11,7 +11,7 @@ class Credito:public Reserva{
 		string financiera;
 	public:
 		Credito();
-		Credito(float, string);
+		Credito(int ,float ,int ,Funcion* ,Usuario* ,float, string);
 		float getPorcentajeDescuento();
 		void setPorcentajeDescuento(float);
 		string getFinanciera();

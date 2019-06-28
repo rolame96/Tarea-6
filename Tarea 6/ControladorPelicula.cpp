@@ -19,6 +19,10 @@ void ControladorPelicula::agregarPelicula(DtPelicula dtPelicula){
 	listaPeliculas.push_back(nuevaPelicula);
 }
 
+void ControladorPelicula::eliminarPeliculaSeleccionada(){
+	
+}
+
 list<DtPelicula> ControladorPelicula::listarPelicula(){
 	list<DtPelicula> listaDtPelicula;
 	for (std::list<Pelicula*>::iterator it=listaPeliculas.begin(); it != listaPeliculas.end(); ++it){

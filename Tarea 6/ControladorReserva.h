@@ -12,6 +12,8 @@
 #include "ControladorUsuario.h"
 #include <stdexcept>
 #include <typeinfo>
+#include <cstdlib>
+
 
 using namespace std;
 
@@ -25,7 +27,7 @@ class  ControladorReserva: public IControladorReserva{
 	public:
 		static ControladorReserva* getInstancia();
 		void confirmarReserva();
-		void crearReserva(DtReserva);
+		void crearReserva(const DtReserva&);
 		void cancelarReserva();
 		float mostrarCostoNuevaReserva();
 		~ControladorReserva();

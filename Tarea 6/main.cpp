@@ -10,10 +10,19 @@
 #include "DtReserva.h"
 #include "DtCredito.h"
 #include "DtDebito.h"
+#include "IControladorReloj.h"
 
 using namespace std;
 map<string, float> financieras;
 list<DtSala> listaDtSalas;
+
+void setFechayHora(){
+	Fabrica* f = Fabrica::getInstancia();
+	IControladorReloj* reloj= f->getIControladorReloj();
+	DtFecha dtFecha = DtFecha();
+	DtHorario dtHorario = DtHorario(19,30);
+	reloj->modificarFecha(dtFecha,dtHorario);
+}
 
 void agregarFuncion(){
 	Fabrica* f = Fabrica::getInstancia();
@@ -108,15 +117,6 @@ void agregarCine(){
 }
 
 int main() {
-	/*
-	agregarFinanciera();
-	agregarUsuario();
-	bool sesionOK = Fabrica::getInstancia()->getIControladorUsuario()->iniciarSesion("admin", "admin");
-	agregarPelicula();
-	agregarCine();
-	agregarFuncion();	
-	//Fabrica::getInstancia()->getIControladorUsuario()->cerrarSesion();		
-	*/
 	cout << "Bienvenido. Elija la opcion" << endl; 
 	while(true)
 	{		
@@ -130,6 +130,8 @@ int main() {
 		cout << "8) Ver Información de Película  " << endl; 
 		cout << "9) Ver Comentarios y Puntajes de Película  " << endl; 
 	    cout << "10) Cargar datos " << endl; 
+	    cout << "11) Ingrese fecha al sistema " << endl; 
+	    cout << "12) Consulta fecha del sistema " << endl; 
 		int comando;
 		cin >> comando;			
 
@@ -149,39 +151,41 @@ int main() {
 				cout << "No ok"<< endl; 
 				
 		}else if (comando == 2){ //Alta Cine
+			Fabrica* f = Fabrica::getInstancia();
+			IControladorUsuario* contUsuario = f->getIControladorUsuario();
 			string calle;
 			int numero, capacidad, opcion;
-			cout << "Ingrese calle: " << endl; 
-			cin >> calle;	
-			cout << "Ingrese numero: " << endl; 
-			cin >> numero;
-			opcion=3;
-			while(opcion==3){
-				cout << "Ingrese capacidad: " << endl; 
-				cin >> capacidad;
-				DtSala ds = DtSala(0,capacidad);
-				listaDtSalas.push_back(ds);
-				cout << "1) Confirmar " << endl; 
-				cout << "2) Cancelar " << endl; 
-				cout << "3) Agregar otra sala " << endl; 
-				cin >> opcion;
-			}
-			if(opcion==2)
-				listaDtSalas.clear();
-			else if(opcion==1){
-				Fabrica* f = Fabrica::getInstancia();
-				IControladorCineFuncion* controladorCineFuncion= f->getIControladorCineFuncion();
-				controladorCineFuncion->agregarCine(DtCine(0,DtDireccion(calle,numero)),listaDtSalas);	
-			}
-			
+			if (contUsuario->usuarioLogueadoEsAdmin()){
+				cout << "Ingrese calle: " << endl; 
+				cin >> calle;	
+				cout << "Ingrese numero: " << endl; 
+				cin >> numero;
+				opcion=3;
+				while(opcion==3){
+					cout << "Ingrese capacidad: " << endl; 
+					cin >> capacidad;
+					DtSala ds = DtSala(0,capacidad);
+					listaDtSalas.push_back(ds);
+					cout << "1) Confirmar " << endl; 
+					cout << "2) Cancelar " << endl; 
+					cout << "3) Agregar otra sala " << endl; 
+					cin >> opcion;
+				}
+				if(opcion==2)
+					listaDtSalas.clear();
+				else if(opcion==1){
+					Fabrica* f = Fabrica::getInstancia();
+					IControladorCineFuncion* controladorCineFuncion= f->getIControladorCineFuncion();
+					controladorCineFuncion->agregarCine(DtCine(0,DtDireccion(calle,numero)),listaDtSalas);	
+				}
+			}else
+				cout << "No es admin " << endl;	
 		}else if (comando == 3){//Alta Función
 			Fabrica* f = Fabrica::getInstancia();
 			IControladorUsuario* contUsuario = f->getIControladorUsuario();
 			IControladorPelicula* contPelicula = f->getIControladorPelicula();		
 			IControladorCineFuncion* contCineFuncion = f->getIControladorCineFuncion();	
 			int peliculaSeleccionada = 0,cineSeleccionado = 0,cont = 0,salaSeleccionada = 0;
-			
-			
 			if (contUsuario->usuarioLogueadoEsAdmin()){
 				cout << "Seleccione pelicula " << endl; 
 				DtPelicula p;
@@ -201,7 +205,6 @@ int main() {
 					}
 				}
 				contPelicula->seleccionarPelicula(p);	
-				
 				cout << "Seleccione cine " << endl; 
 				DtCine c;				
 				list<DtCine> lc = contCineFuncion->listarCine();
@@ -311,7 +314,7 @@ int main() {
 							}
 							cin >> aux;
 							if(aux!=0){
-								int cantAsientos;
+								int cantAsientos = 0;
 								contCineFuncion->SeleccionarFuncion(DtFuncion(aux,DtFecha(),DtHorario()));
 								cout << "Ingrese cantidad de asientos: "<<endl;							
 								cin >> cantAsientos;
@@ -328,13 +331,14 @@ int main() {
 									  cout << clave << " - Descuento: " << valor << "%" <<endl;
 									}
 									cin >> financiera;
-									DtCredito dtr = DtCredito(financieras[financiera],financiera,0);
+									float porcentaje = financieras[financiera];
+									DtCredito dtr = DtCredito(0,0,cantAsientos,porcentaje,financiera,0);
 									contReserva->crearReserva(dtr);
 								}else{
 									string banco;
 									cout << "Ingrese banco: "<<endl;
 									cin >> banco;
-									DtDebito dtd = DtDebito(banco,0);
+									DtDebito dtd = DtDebito(0,0,cantAsientos,banco,0);
 									contReserva->crearReserva(dtd);
 								}
 								cout << "Costo de la reserva: "<< contReserva->mostrarCostoNuevaReserva() << endl;
@@ -396,17 +400,109 @@ int main() {
 		
 		
 		}else if (comando == 7){//Eliminar Película		
-		
+			Fabrica* f = Fabrica::getInstancia();
+			IControladorUsuario* contUsuario = f->getIControladorUsuario();
+			IControladorPelicula* contPelicula = f->getIControladorPelicula();
+			int peliculaSeleccionada=0, cont=0, aux=0, puntaje=0;
+			if (contUsuario->usuarioLogueadoEsAdmin()){
+				cout << "Seleccione pelicula " << endl; 
+				DtPelicula p;
+				list<DtPelicula> lp = contPelicula->listarPelicula();
+				for (std::list<DtPelicula>::iterator it=lp.begin(); it != lp.end(); ++it){
+					cont++;
+					p = *it;
+					cout << cont << " - "<< p.getTitulo() << endl; 					
+				}
+				cin >> peliculaSeleccionada;
+				cont = 0;
+				for (std::list<DtPelicula>::iterator it=lp.begin(); it != lp.end(); ++it){
+					cont++;
+					if (cont == peliculaSeleccionada ){					
+						p = *it;					
+						break;	
+					}
+				}
+				contPelicula->seleccionarPelicula(p);
+				cout << "Confirmar = 1, Cancelar = 0"<<endl;
+				cin>>aux;
+				if(aux==1){
+					contPelicula->eliminarPeliculaSeleccionada();
+					cout << "Pelicula eliminada";
+				}		
+			
+			}else
+				cout << "No es admin"<<endl;
 		
 		}else if (comando == 8){//Ver Información de Película				
-		
-		
+			Fabrica* f = Fabrica::getInstancia();
+			IControladorPelicula* contPelicula = f->getIControladorPelicula();
+			IControladorCineFuncion* contCineFuncion = f->getIControladorCineFuncion();
+			int peliculaSeleccionada=0, cont=0, aux=0, puntaje=0;	
+			DtPelicula p;
+			while(true){
+				cont=0;
+				cout << "Seleccione pelicula o cancelar = 0" << endl; 
+				list<DtPelicula> lp = contPelicula->listarPelicula();
+				for (std::list<DtPelicula>::iterator it=lp.begin(); it != lp.end(); ++it){
+					cont++;
+					p = *it;
+					cout << cont << " - "<< p.getTitulo() << endl; 					
+				}
+				cin >> peliculaSeleccionada;
+				if(peliculaSeleccionada!=0){
+					cont = 0;
+					for (std::list<DtPelicula>::iterator it=lp.begin(); it != lp.end(); ++it){
+						cont++;
+						if (cont == peliculaSeleccionada ){					
+							p = *it;					
+							break;	
+						}
+					}
+					contPelicula->seleccionarPelicula(p);
+					DtPelicula dp = contPelicula->getDatosPeliculaSeleccionada();
+					cout << "Poster: "<<dp.getPoster() <<endl;
+					cout << "Sinopsis: "<<dp.getSinopsis() <<endl;
+					cout << "Ver información adicional = 1, Cancelar = 0" << endl; 
+					cin >> aux;
+					if(aux == 1){
+						list<DtCine> listaDtCine = contCineFuncion->listarCinePeliculaSeleccionada();
+						DtCine dc;
+						for (std::list<DtCine>::iterator it=listaDtCine.begin(); it != listaDtCine.end(); ++it){
+							dc = *it;
+							cout << dc; 	
+						}
+						aux=0;
+						cout << "Seleccionar Cine o Cancelar = 0" << endl;
+						cin >> aux; 
+						if(aux != 0){
+							contCineFuncion->SeleccionarCine(DtCine(aux,DtDireccion()));
+							list<DtFuncion> listaDtFuncion = contCineFuncion->listarFuncionCineSeleccionadoPeliculaSeleccionada();
+							aux=0;
+							cout << "Funciones: "<<endl;
+							DtFuncion df;
+							for (std::list<DtFuncion>::iterator it=listaDtFuncion.begin(); it != listaDtFuncion.end(); ++it){
+								df = *it;
+								cout << df << endl; 
+							}
+							aux=0;
+							cout << "Repetir = 1, Salir = 0 "<<endl;
+							cin>>aux;
+							if(aux!=1)
+								break;
+						}else 
+							break;
+					}else 
+						break;
+				}else
+					break;	
+			}
 		}else if (comando == 9){//Ver Comentarios y Puntajes de Películas
 		
 		
 		}else if (comando == 10){//Cargar datos
 		
 			agregarFinanciera();
+			setFechayHora();
 			agregarUsuario();
 			Fabrica* f = Fabrica::getInstancia();
 			IControladorUsuario* contUsuario= f->getIControladorUsuario();
@@ -416,6 +512,29 @@ int main() {
 			agregarFuncion();	
 			contUsuario->cerrarSesion();
 							
+		}else if (comando == 11){//Ingresa fecha del sistema
+			Fabrica* f = Fabrica::getInstancia();
+			IControladorReloj* reloj= f->getIControladorReloj();
+			int dia,mes, anio,hora,minutos;
+			cout << "Ingrese fecha del sistema: " << endl; 
+			cout << "dia " << endl; 
+			cin >> dia;
+			cout << "mes " << endl; 
+			cin >> mes;
+			cout << "anio " << endl; 
+			cin >> anio;	
+			DtFecha dtFecha = DtFecha(dia,mes,anio);
+			cout << "Ingrese hora del sistema: " << endl; 
+			cout << "hora " << endl; 
+			cin >> hora;
+			cout << "minutos " << endl; 
+			cin >> minutos;
+			DtHorario dtHorario = DtHorario(hora,minutos);
+			reloj->modificarFecha(dtFecha,dtHorario);
+		}else if (comando == 12){//Consulta fecha del sistema
+			Fabrica* f = Fabrica::getInstancia();
+			IControladorReloj* reloj= f->getIControladorReloj();
+			reloj->imprimirFecha();
 		}else if (comando ==0 )		
 		
 			return(0);

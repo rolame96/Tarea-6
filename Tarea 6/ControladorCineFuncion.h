@@ -8,6 +8,7 @@
 #include "DtSala.h"
 #include "DtFuncion.h"
 #include "Funcion.h"
+#include "Reloj.h"
 
 using namespace std;
 
